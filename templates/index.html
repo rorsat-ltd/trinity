@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>frequency</p>
+    <input type="text" id="frequency">
+    <p>symbol rate</p>
+    <input type="text" id="symbol-rate">
+    <p>channel</p>
+    <input type="text" id="channel">
+    <p>polarity</p>
+    <input type="radio" id="h" name="polarity" value="H" checked>
+    <label for="h">H</label>
+    <input type="radio" id="v" name="polarity" value="V">
+    <label for="v">V</label>
+    <p>Standard</p>
+    <input type="radio" id="dvb-s" name="standard" value="DVB-S">
+    <label for="h">DVB-S</label>
+    <input type="radio" id="DVB-S2" name="standard" value="DVB-S2" checked>
+    <label for="v">DVB-S2</label>
+    <input type="radio" id="DVB-S2X" name="standard" value="DVB-S2X">
+    <label for="v">DVB-S2X</label>
+
+    <p> buttons</p>
+    <p>
+        <input type="button" value="hi or lo" onclick="hi_or_lo()">
+        <input type="button" value="clear" onclick="clr()" />
+    </p>
+
+    <div class="confirmation-box">
+        <p>result</p>
+        <input type="text" id="result-box" readonly="true">
+        <p>frequency</p>
+        <input type="text" id="freq-res" readonly="true">
+    </div>
+    <div id="adv-sett">
+        <h2>advanced settings</h2>
+        <p>
+            <label class="govuk-label" for="freq-band">
+                Select a frequency band
+            </label>
+            <select class="govuk-select" id="freq-band" name="freq-band">
+                <option value="l-band" selected>L Band</option>
+            </select>
+        </p>
+        <p>
+            <label class="govuk-label" for="lnb-sel">
+                Select an LNB Range
+            </label>
+            <select class="govuk-select" id="lnb-sel" name="lnb-sel">
+                <option value="cbs-lon" selected>CBS LON MCR</option>
+            </select>
+        </p>
+    </div>
+
+
+{% endblock content %}
