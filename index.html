@@ -2,42 +2,13 @@
 <html>
 
 <head>
-    <title>JavaScript Calculator</title>
+    <title>Telstar - Sat</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.js"
         integrity="sha512-BbVEDjbqdN3Eow8+empLMrJlxXRj5nEitiCAK5A1pUr66+jLVejo3PmjIaucRnjlB0P9R3rBUs3g5jXc8ti+fQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"
         integrity="sha512-iphNRh6dPbeuPGIrQbCdbBF/qcqadKWLa35YPVfMZMHBSI6PLJh1om2xCTWhpVpmUyb4IvVS9iYnnYMkleVXLA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <!-- For styling -->
-    <style>
-        table {
-            border: 1px solid black;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        input[type="button"] {
-            width: 100%;
-            padding: 20px 40px;
-            background-color: green;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-        }
-
-        input[type="text"] {
-            padding: 20px 30px;
-            font-size: 24px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            border: 2px solid black;
-        }
-    </style>
 </head>
 
 <body>
@@ -48,83 +19,131 @@
     <p>channel</p>
     <input type="text" id="channel">
     <p>polarity</p>
-    <input type="radio" id="h" name="polarity" value="H">
+    <input type="radio" id="h" name="polarity" value="H" checked>
     <label for="h">H</label>
     <input type="radio" id="v" name="polarity" value="V">
     <label for="v">V</label>
-    <p>fixed figures</p>
-    <p>hi lnb</p>
-    <input type="text" id="hi-lnb">
-    <p>lo lnb</p>
-    <input type="text" id="lo-lnb">
-    <p>frequency band hi</p>
-    <input type="text" id="freq-band-hi">
-    <p>frequency band lo</p>
-    <input type="text" id="freq-band-lo">
+    <p>Standard</p>
+    <input type="radio" id="dvb-s" name="standard" value="DVB-S">
+    <label for="h">DVB-S</label>
+    <input type="radio" id="DVB-S2" name="standard" value="DVB-S2" checked>
+    <label for="v">DVB-S2</label>
+    <input type="radio" id="DVB-S2X" name="standard" value="DVB-S2X">
+    <label for="v">DVB-S2X</label>
 
-    <input type="button" value="hi or lo" onclick="hi_or_lo()">
-    <input type="button" value="clear" onclick="clr()" />
-    <!-- Use Table to Create Calculator Structure Design -->
-    #
+    <p> buttons</p>
+    <p>
+        <input type="button" value="hi or lo" onclick="hi_or_lo()">
+        <input type="button" value="clear" onclick="clr()" />
+    </p>
+
+    <div class="confirmation-box">
+        <p>result</p>
+        <input type="text" id="result-box" readonly="true">
+        <p>frequency</p>
+        <input type="text" id="freq-res" readonly="true">
+    </div>
+    <div id="adv-sett">
+        <h2>advanced settings</h2>
+        <p>
+            <label class="govuk-label" for="freq-band">
+                Select a frequency band
+            </label>
+            <select class="govuk-select" id="freq-band" name="freq-band">
+                <option value="l-band" selected>L Band</option>
+            </select>
+        </p>
+        <p>
+            <label class="govuk-label" for="lnb-sel">
+                Select an LNB Range
+            </label>
+            <select class="govuk-select" id="lnb-sel" name="lnb-sel">
+                <option value="cbs-lon" selected>CBS LON MCR</option>
+            </select>
+        </p>
+    </div>
 
     <script>
-
         function hi_or_lo() {
-    let f = Number(document.getElementById("frequency").value); // frequency input
-    let lnb_hi = Number(document.getElementById("hi-lnb").value); // top of lnb range
-    let lnb_lo = Number(document.getElementById("lo-lnb").value); // bottom of lnb range
-    let hi_calc = f - lnb_hi;
-    let lo_calc = f - lnb_lo;
-    let freq_band_hi = Number(document.getElementById("freq-band-hi").value); // top of band
-    let freq_band_lo = Number(document.getElementById("freq-band-lo").value); // bottom of band
-    
-    //boolean values
-    let use_hi = false;
-    let use_lo = false;
+            let f = Number(document.getElementById("frequency").value); // frequency input
+            let lnb_hi = 10600; // top of LNB range (default)
+            let lnb_lo = 9750;  // bottom of LNB range (default)
+            let hi_calc = f - lnb_hi;
+            let lo_calc = f - lnb_lo;
+            let freq_band_hi = 2000; // top of band (default)
+            let freq_band_lo = 950;  // bottom of band (default)
+            let result = "";
+            let freq_result = 9999 // default value
 
-    if (hi_calc >= freq_band_lo && hi_calc <= freq_band_hi) { // is it in range of band, using hi lnb
-        use_hi = true;
-        console.log(hi_calc);
-        console.log("usehi true");
-        console.log(use_hi);
-    } else {
-        use_hi = false;
-        console.log(hi_calc);
-        console.log("usehi false");
-        console.log(use_hi);
-    }
+            // Boolean values
+            let use_hi = false;
+            let use_lo = false;
 
-    if (lo_calc >= freq_band_lo && lo_calc <= freq_band_hi) { // is it in range of band, using lo lnb
-        use_lo = true;
-        console.log(lo_calc);
-        console.log("uselo true");
-        console.log(use_lo);
-    } else {
-        use_lo = false;
-        console.log(lo_calc);
-        console.log("uselo false");
-        console.log(use_lo);
-    }
+            // Getting radio button values
+            let polarity = document.querySelector('input[name="polarity"]:checked');
+            let standard = document.querySelector('input[name="standard"]:checked');
 
-    if (use_hi === false && use_lo === true) {
-        console.log("use lo band");
-        console.log(lo_calc);
-    } else if (use_hi === true && use_lo === false) {
-        console.log("use hi band");
-        console.log(hi_calc);
-    } else if (!use_hi && !use_lo) {
-        console.log("out of range");
-    } else {
-        console.log("error");
-    }
-}
+            // Frequency band selector
+            switch (document.getElementById("freq-band").value) {
+                case "l-band":
+                    freq_band_hi = 2000;
+                    freq_band_lo = 950;
+                    break;
+                default:
+                    console.warn("Unknown frequency band; using default values. (L-band)");
+            }
+            // LNB selector
+            switch (document.getElementById("lnb-sel").value) {
+                case "cbs-lon":
+                    lnb_hi = 10600;
+                    lnb_lo = 9750;
+                    break;
+                default:
+                    console.warn("Unknown LNB selection; using default values. (CBS LON)");
+                    break;
+            }
+
+            if (hi_calc >= freq_band_lo && hi_calc <= freq_band_hi) {
+                use_hi = true;
+                freq_result = hi_calc
+            }
+            if (lo_calc >= freq_band_lo && lo_calc <= freq_band_hi) {
+                use_lo = true;
+                freq_result = lo_calc
+            }
+
+            if (!use_hi && use_lo) {
+                result = "Lo";
+            } else if (use_hi && !use_lo) {
+                result = "Hi";
+            } else if (!use_hi && !use_lo) {
+                result = "Out of Range";
+            } else if (use_hi && use_lo) {
+                result = "Overlap, both in range";
+            } else {
+                console.warn("Error in calculation; unknown state of use_hi and use_lo");
+                result = "error";
+            }
+
+            // Displaying the result with polarity
+            if (polarity && (result === "Hi" || result === "Lo")) {
+                result = polarity.value + result;
+            }
+
+            document.getElementById("result-box").value = result;
+            document.getElementById("freq-res").value = freq_result;
 
 
+        }
 
-        // Function that clear the display 
+        // Clear function to reset inputs
         function clr() {
-            document.getElementById("result").value = ""
-        } 
+            document.getElementById("frequency").value = "";
+            document.getElementById("symbol-rate").value = "";
+            document.getElementById("channel").value = "";
+            document.getElementById("result-box").value = "";
+            document.querySelectorAll('input[name="polarity"]').forEach((el) => el.checked = false);
+        }
     </script>
 </body>
 
