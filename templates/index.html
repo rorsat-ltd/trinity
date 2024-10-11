@@ -7,7 +7,7 @@
   <div class="govuk-width-container">
     <div class="govuk-service-navigation__container">
       <span class="govuk-service-navigation__service-name">
-        <a href="#" class="govuk-service-navigation__link">
+        <a href="/" class="govuk-service-navigation__link govuk-service-navigation__item--active">
           Telstar 
         </a>
       </span>
@@ -16,16 +16,14 @@
           Menu
         </button>
         <ul class="govuk-service-navigation__list" id="navigation">
-          <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
-            <a class="govuk-service-navigation__link" href="/" aria-current="true">
-                <strong class="govuk-service-navigation__active-fallback">
-              Basic
-            </strong>
+          <li class="govuk-service-navigation__item">
+            <a class="govuk-service-navigation__link" href="/lnb">
+              LNB Calc
             </a>
           </li>
           <li class="govuk-service-navigation__item">
-            <a class="govuk-service-navigation__link" href="/advanced" >
-             Advanced
+            <a class="govuk-service-navigation__link" href="/lnb-adv" >
+             LNB Calc Advanced
             </a>
           </li>
           <!-- <li class="govuk-service-navigation__item">
@@ -53,82 +51,8 @@
 
 <div class="govuk-width-container">
     <main class="govuk-main-wrapper">
-        <h1 class="govuk-heading-xl">LNB Band Calculator</h1>
-
-         <!-- input boxes - Frequency -->
-
-
-         <div class="govuk-form-group">
-            <label class="govuk-label" for="frequency">
-                Downlink Frequency
-            </label>
-            <div class="govuk-input__wrapper">
-                <input type="text" id="frequency" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" spellcheck="false"
-                    inputmode="numeric">
-                <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
-            </div>
-        </div>
-
-        <!-- Radio buttons - Polarity -->
-
-        <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" id="polairty">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="polarity">
-                    <h2 class="govuk-fieldset__heading">
-                        Polarity
-                    </h2>
-                </legend>
-                <div class="govuk-radios" data-module="govuk-radios">
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" type="radio" id="h" name="polarity" value="H" checked>
-                        <label class="govuk-label govuk-radios__label" for="h">H / X</label>
-                    </div>
-
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" type="radio" id="v" name="polarity" value="V">
-                        <label class="govuk-label govuk-radios__label" for="v">V / Y</label>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-
-         <!-- Buttons  -->
-         <div class="govuk-button-group">
-            <button type="submit" class="govuk-button" data-module="govuk-button" onclick="hi_or_lo_bas()">
-                Go! Do maths for me!
-            </button>
-
-
-            <button id="clear" type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button"
-                onclick="clr()">
-                Clear
-            </button>
-
-        </div>
-
-        <!-- Result: Result -->
-
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="result-box">
-                Result
-            </label>
-            <div class="govuk-input__wrapper">
-                <input type="text" id="result-box" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" spellcheck="false"
-                    readonly="true" disabled="true">
-            </div>
-        </div>
-        <!-- Result: Frequency -->
-
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="freq-res">
-                Frequency
-            </label>
-            <div class="govuk-input__wrapper">
-                <input type="text" id="freq-res" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" spellcheck="false"
-                    inputmode="numeric" readonly="true" disabled="true">
-                <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
-            </div>
-        </div>
+        <h1 class="govuk-heading-xl">RORSAT Telstar - Tools</h1>
+         
     </main>
 </div>
 
