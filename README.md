@@ -1,1 +1,1 @@
-rorsat-ltd.github.io/Telstar
+telstar.pages.dev
