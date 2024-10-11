@@ -1,0 +1,11 @@
+.urbanist-black {
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+  }
+
+
+.govuk-header--full-width-border {
+    border-bottom-color: #2a3d69;
+  }

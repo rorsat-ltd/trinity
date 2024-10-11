@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section aria-label="Service information" class="govuk-service-navigation"
+  data-module="govuk-service-navigation">
+  <div class="govuk-width-container">
+    <div class="govuk-service-navigation__container">
+      <span class="govuk-service-navigation__service-name">
+        <a href="#" class="govuk-service-navigation__link">
+          Telstar 
+        </a>
+      </span>
+      <nav aria-label="Menu" class="govuk-service-navigation__wrapper">
+        <button type="button" class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle" aria-controls="navigation" hidden>
+          Menu
+        </button>
+        <ul class="govuk-service-navigation__list" id="navigation">
+          <li class="govuk-service-navigation__item">
+            <a class="govuk-service-navigation__link" href="/">
+              Basic
+            </a>
+          </li>
+          <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
+            <a class="govuk-service-navigation__link" href="/advanced" aria-current="true">
+              <strong class="govuk-service-navigation__active-fallback">Advanced</strong>
+            </a>
+          </li>
+          <!-- <li class="govuk-service-navigation__item">
+            <a class="govuk-service-navigation__link" href="#">
+              Navigation item 3
+            </a>
+          </li> -->
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<div class="govuk-width-container app-width-container">
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong class="govuk-tag govuk-phase-banner__content__tag">
+        Alpha
+      </strong>
+      <span class="govuk-phase-banner__text">
+        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
+
+<div class="govuk-width-container">
+    <main class="govuk-main-wrapper">
+        <h1 class="govuk-heading-xl">Satellite Frequency Calculator (Advanced)</h1>
+
+        <!-- input boxes - Sat Name -->
+
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="sat-name">
+                Satellite Name
+            </label>
+            <div class="govuk-input__wrapper">
+                <select class="govuk-select" id="sat-name" name="sat-name">
+                    <option value="hb-13g" selected>Hotbird 13G</option>
+                    <option value="et-9b" >Eutelsat 9B</option>
+                    <option value="aa-3b" >Astra 3B</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- input boxes - Channel Name -->
+
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="channel-name">
+                Channel Name
+            </label>
+            <div class="govuk-input__wrapper">
+                <input type="text" id="channel-name" class="govuk-input govuk-input--width-10" spellcheck="false">
+            </div>
+        </div>
+
+
+        <!-- input boxes - Frequency -->
+
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="frequency">
+                Frequency
+            </label>
+            <div class="govuk-input__wrapper">
+                <input type="text" id="frequency" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" spellcheck="false"
+                    inputmode="numeric">
+                <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
+            </div>
+        </div>
+
+        <!-- input boxes - Symbol Rate -->
+
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="symbol-rate">
+                Symbol Rate
+            </label>
+            <div class="govuk-input__wrapper">
+                <input type="text" id="symbol-rate" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" spellcheck="false"
+                    inputmode="numeric">
+                <div class="govuk-input__suffix" aria-hidden="true">Bd</div>
+            </div>
+        </div>
+
+        <!-- input boxes - Channel No -->
+
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="channel-no">
+                Channel Number
+            </label>
+            <div class="govuk-input__wrapper">
+                <input type="text" id="channel-no" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" spellcheck="false"
+                    inputmode="numeric">
+            </div>
+        </div>
+
+                <!-- input boxes - IRD No -->
+
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="ird-no">
+                        IRD Number
+                    </label>
+                    <div class="govuk-input__wrapper">
+                        <input type="text" id="ird-no" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" spellcheck="false"
+                            inputmode="numeric">
+                    </div>
+                </div>
+
+
+
+        <!-- Radio buttons - Polarity -->
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" id="polairty">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="polarity">
+                    <h2 class="govuk-fieldset__heading">
+                        Polarity
+                    </h2>
+                </legend>
+                <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" type="radio" id="h" name="polarity" value="H" checked>
+                        <label class="govuk-label govuk-radios__label" for="h">H</label>
+                    </div>
+
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" type="radio" id="v" name="polarity" value="V">
+                        <label class="govuk-label govuk-radios__label" for="v">V</label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+
+        <!-- Radio buttons - Standard -->
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" id="standard" name="standard">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="standard" name="standard">
+                    <h2 class="govuk-fieldset__heading">
+                        Standard
+                    </h2>
+                </legend>
+                <div class="govuk-radios" data-module="govuk-radios">
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" type="radio" id="s" name="standard" value="DVB-S">
+                        <label class="govuk-label govuk-radios__label" for="s">DVB-S</label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" type="radio" id="s2" name="standard" value="DVB-S2" checked>
+                        <label class="govuk-label govuk-radios__label" for="s2">DVB-S2</label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" type="radio" id="S2X" name="standard" value="DVB-S2X">
+                        <label class="govuk-label govuk-radios__label" for="S2X">DVB-S2X</label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+
+        <!-- Buttons  -->
+        <div class="govuk-button-group">
+            <button type="submit" class="govuk-button" data-module="govuk-button" onclick="hi_or_lo_adv()">
+                Go! Do maths for me!
+            </button>
+
+
+            <button id="clear" type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button"
+                onclick="clr()">
+                Clear
+            </button>
+
+        </div>
+
+        <!-- Result: Result -->
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="result-box">
+                Result
+            </label>
+            <div class="govuk-input__wrapper">
+                <input type="text" id="result-box" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" spellcheck="false"
+                    readonly="true" disabled="true">
+            </div>
+        </div>
+        <!-- Result: Frequency -->
+
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="freq-res">
+                Frequency
+            </label>
+            <div class="govuk-input__wrapper">
+                <input type="text" id="freq-res" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" spellcheck="false"
+                    inputmode="numeric" readonly="true" disabled="true">
+                <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
+            </div>
+        </div>
+        <!-- Advanced Settings: -->
+
+
+        <div id="adv-sett">
+            <h2 class="govuk-heading-l">Advanced Settings</h2>
+
+            <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                    <span class="govuk-visually-hidden">Warning</span>
+                    Be careful!
+                </strong>
+            </div>
+
+            <p>
+                <label class="govuk-label" for="freq-band">
+                    Select a frequency band
+                </label>
+                <select class="govuk-select" id="freq-band" name="freq-band">
+                    <option value="l-band" selected>L Band (950MHz - 2000MHz)</option>
+                </select>
+            </p>
+            <p>
+                <label class="govuk-label" for="lnb-sel">
+                    Select an LNB Range
+                </label>
+                <select class="govuk-select" id="lnb-sel" name="lnb-sel">
+                    <option value="cbs-lon" selected>CBS LON MCR</option>
+                </select>
+            </p>
+        </div>
+
+    </main>
+</div>
+
+{% endblock content %}
