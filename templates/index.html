@@ -2,59 +2,71 @@
 
 {% block content %}
 
-<section aria-label="Service information" class="govuk-service-navigation"
-  data-module="govuk-service-navigation">
-  <div class="govuk-width-container">
-    <div class="govuk-service-navigation__container">
-      <span class="govuk-service-navigation__service-name">
-        <a href="/" class="govuk-service-navigation__link govuk-service-navigation__item--active">
-          Telstar 
-        </a>
-      </span>
-      <nav aria-label="Menu" class="govuk-service-navigation__wrapper">
-        <button type="button" class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle" aria-controls="navigation" hidden>
-          Menu
-        </button>
-        <ul class="govuk-service-navigation__list" id="navigation">
-          <li class="govuk-service-navigation__item">
-            <a class="govuk-service-navigation__link" href="/lnb">
-              LNB Calc
-            </a>
-          </li>
-          <li class="govuk-service-navigation__item">
-            <a class="govuk-service-navigation__link" href="/lnb-adv" >
-             LNB Calc Advanced
-            </a>
-          </li>
-          <!-- <li class="govuk-service-navigation__item">
-            <a class="govuk-service-navigation__link" href="#">
-              Navigation item 3
-            </a>
-          </li> -->
-        </ul>
-      </nav>
-    </div>
-  </div>
-</section>
-
 <div class="govuk-width-container app-width-container">
-  <div class="govuk-phase-banner">
-    <p class="govuk-phase-banner__content">
-      <strong class="govuk-tag govuk-phase-banner__content__tag">
-        Beta
-      </strong>
-      <span class="govuk-phase-banner__text">
-        This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-      </span>
-    </p>
-  </div>
+    <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+            <strong class="govuk-tag govuk-phase-banner__content__tag">
+                Beta
+            </strong>
+            <span class="govuk-phase-banner__text">
+                This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+            </span>
+        </p>
+    </div>
+</div>
+
+<!-- warning banner -->
+<div class="govuk-width-container" id="cbslon-fri-fat" style="display: none;">
+    <div class="govuk-notification-banner notif-banner-red" role="region"
+        aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                CBS LON MCR — Fire Alarm Test
+            </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+                There is a fire alarm test at 1500BST today (<a id="date"></a>).</p>
+                <a id="dismiss-notif" href="#">Dismiss</a>
+        </div>
+    </div>
+</div>
+
 
 <div class="govuk-width-container">
     <main class="govuk-main-wrapper">
         <h1 class="govuk-heading-xl">RORSAT Telstar - Tools</h1>
-         
+        <!-- lead paragraph -->
+        <p class="govuk-body-l">This is a collection of tools that have been built when working in the broadcast
+            industry, to make engineer's lives easier.</p>
+        <p class="govuk-body">Some of them are darn useful, others are uttely pointless. Some may be broken and not work
+            at all!</p>
+
     </main>
 </div>
 
+<script>
+
+    const d = new Date();
+    document.getElementById("date").innerHTML = d.toDateString();
+
+
+    if (d.getDay() === 5) { // 5 corresponds to Friday in JavaScript (Sunday = 0, Monday = 1, etc.)
+        showOnFriday();
+    }
+
+    function showOnFriday() {
+        var x = document.getElementById("cbslon-fri-fat");
+        x.style.display = "block"; // Ensure the element is shown on Fridays
+    }
+
+    document.getElementById("dismiss-notif").onclick = function (){
+    document.getElementById("cbslon-fri-fat").style.display = "none";
+    };
+
+
+
+
+</script>
 
 {% endblock %}
