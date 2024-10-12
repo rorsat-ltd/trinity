@@ -2,6 +2,8 @@
 
 {% block content %}
 
+
+
 <div class="govuk-width-container app-width-container">
     <div class="govuk-phase-banner">
         <p class="govuk-phase-banner__content">
@@ -26,7 +28,7 @@
         </div>
         <div class="govuk-notification-banner__content">
             <p class="govuk-notification-banner__heading">
-                There is a fire alarm test at 1500BST today (<a id="date"></a>).</p>
+                There is a fire alarm test at 1500BST today.</p>
                 <a id="dismiss-notif" class="govuk-link" href="#">Dismiss</a>
         </div>
     </div>
@@ -38,7 +40,7 @@
         <h1 class="govuk-heading-xl">Telstar - Useful web tools for broadcast engineers</h1>
         <!-- lead paragraph -->
         <p class="govuk-body-l">This is a collection of tools that have been built when working in the broadcast
-            industry, to make engineer's lives easier.</p>
+            industry, to make engineers' lives easier.</p>
         <p class="govuk-body">Some of them are darn useful, others are uttely pointless. Some may be broken and not work
             at all!</p>
 
@@ -55,8 +57,12 @@
                 </thead>
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header"><a href="https://www.lyngsat.com/" class="govuk-link--no-visited-state">Lyngsat</a></th>
+                    <th scope="row" class="govuk-table__header"><a href="https://www.lyngsat.com/" class="govuk-link--no-visited-state">LyngSat</a></th>
                     <td class="govuk-table__cell">Satellite downlink information</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header"><a href="https://www.digitalbitrate.com/" class="govuk-link--no-visited-state">DigitalBitrate</a></th>
+                    <td class="govuk-table__cell">Digital TV Radio scanning and measurement</td>
                   </tr>
                   <!--<tr class="govuk-table__row">
                     <th scope="row" class="govuk-table__header">Next 33 weeks</th>
@@ -71,30 +77,26 @@
     </main>
 </div>
 
-
-
 <script>
-
+    //get date and make the notification visible on Fridays
     const d = new Date();
-    document.getElementById("date").innerHTML = d.toDateString();
-
-
-    if (d.getDay() === 5) { // 5 corresponds to Friday in JavaScript (Sunday = 0, Monday = 1, etc.)
-        showOnFriday();
-    }
-
-    function showOnFriday() {
-        var x = document.getElementById("cbslon-fri-fat");
-        x.style.display = "block"; // Ensure the element is shown on Fridays
-    }
-
-    document.getElementById("dismiss-notif").onclick = function (){
-    document.getElementById("cbslon-fri-fat").style.display = "none";
-    };
-
-
-
-
-</script>
+        
+    
+        if (d.getDay() === 5) { // 5 corresponds to Friday in JavaScript (Sunday = 0, Monday = 1, etc.)
+            showOnFriday();
+        }
+    
+        function showOnFriday() {
+            var x = document.getElementById("cbslon-fri-fat");
+            x.style.display = "block"; // Ensure the element is shown on Fridays
+        }
+    
+        document.getElementById("dismiss-notif").onclick = function (){
+        document.getElementById("cbslon-fri-fat").style.display = "none";
+        };
+    
+    
+    
+    </script>
 
 {% endblock %}

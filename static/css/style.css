@@ -66,3 +66,21 @@
 .govuk-input__suffix--hide-right {
   border-right: 0;
 }
+
+
+.govuk-header__nolink {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 30px;
+}
+
+.govuk-header__right {
+  margin-left: auto;
+  font-size: 30px;
+  font-family: "Urbanist";
+}
+
+.govuk-header__logo {
+  display: flex;
+  flex-direction: row;
+}

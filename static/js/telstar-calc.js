@@ -134,3 +134,18 @@ function clr() {
     document.getElementById("result-box").value = "";
     document.querySelectorAll('input[name="polarity"]').forEach((el) => el.checked = false);
 }
+
+
+
+
+
+
+
+//header date
+document.addEventListener("DOMContentLoaded", function() {
+    var dateElement = document.getElementById("header-date");
+    if (dateElement) {
+        var currentDate = new Date().toDateString();
+        dateElement.textContent = currentDate;
+    }
+});
