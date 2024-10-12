@@ -1,4 +1,14 @@
-
+:root {
+  --test-card: linear-gradient(
+    90deg,
+    #bfbf00 0% 16.67%,
+    #00bfbf 16.67% 33.34%,
+    #00bf00 33.34% 50.01%,
+    #bf00bf 50.01% 66.68%,
+    #bf0000 66.68% 83.35%,
+    #0000bf 83.35% 100%
+  );
+}
 
 @font-face {
   font-family: GDS Transport;
@@ -22,32 +32,30 @@
 }
 */
 .urbanist-black {
-    font-family: "Urbanist", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 900;
-    font-style: normal;
-  }
-
+  font-family: "Urbanist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+}
 
 .govuk-header--full-width-border,
 .govuk-header__container {
-    border-bottom-color: #2a3d69;
-  }
-
+  border-bottom-color: #2a3d69;
+}
 
 .govuk-notification-banner {
-    margin-top: 10px;
-    margin-bottom: 0px;
+  margin-top: 10px;
+  margin-bottom: 0px;
 }
 
 .notif-banner-red {
-    border: 5px solid #d4351c;
-    background-color: #d4351c;
+  border: 5px solid #d4351c;
+  background-color: #d4351c;
 }
 
 /* stop word wrap in banner */
 .govuk-notification-banner__content > * {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .govuk-footer__copyright-logo {
@@ -57,17 +65,4 @@
 
 .govuk-input__suffix--hide-right {
   border-right: 0;
-}
-
-
-.slidecontainer {
-  position: relative;
-  width: 100%;
-}
-
-.slider-value {
-  position: absolute;
-  top: -25px; /* Positioning the value above the slider */
-  font-size: 14px;
-  color: #333;
 }

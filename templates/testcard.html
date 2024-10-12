@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<style>
+    .govuk-header--full-width-border {
+        border-image: var(--test-card) 1;
+    }
+</style>
+
+
 <div class="govuk-width-container">
     <main class="govuk-main-wrapper">
         <h1 class="govuk-heading-xl">Test Card Generator</h1>
@@ -20,8 +28,8 @@
                     <label class="govuk-label" for="program">
                         Program
                     </label>
-                    <textarea class="govuk-textarea govuk-!-width-three-quarters" id="program" name="moreDetail"
-                        rows="3" aria-describedby="more-detail-hint"></textarea>
+                    <textarea class="govuk-textarea govuk-!-width-three-quarters" id="program" name="program" rows="3"
+                        aria-describedby="more-detail-hint"></textarea>
                 </div>
 
                 <div class="govuk-form-group">
@@ -41,7 +49,7 @@
                         If there's no audio, please interact with the test card to trigger.
                     </div>
                     <select class="govuk-select" id="song" name="song">
-                        <option value="resources/blits.ogg">Blits</option>
+                        <option value="resources/blits.ogg">BLITS</option>
                         <option value="resources/volvosong.flac" selected>VolvoSong</option>
                         <option value="resources/song.flac">Song</option>
                         <option value="resources/dnevnik.ogg">Dnevnik</option>
@@ -55,15 +63,17 @@
 
                 <div class="govuk-form-group">
                     <label class="govuk-label" for="volume">
-                      Volume
+                        Volume
                     </label>
                     <div id="volume-hint" class="govuk-hint">
-                      Please enter a value between 0 and 100.
+                        Please enter a value between 0 and 100.
                     </div>
-                    <input class="govuk-input govuk-input--width-3 govuk-input--extra-letter-spacing" id="volume" name="volume" type="number" min="0" max="100" step="5" value="50" aria-describedby="volume-hint">
-                  </div>
+                    <input class="govuk-input govuk-input--width-3 govuk-input--extra-letter-spacing" id="volume"
+                        name="volume" type="number" min="0" max="100" step="5" value="50"
+                        aria-describedby="volume-hint">
+                </div>
 
-               
+
 
                 <div class="govuk-form-group">
                     <fieldset class="govuk-fieldset">
@@ -112,20 +122,20 @@
     updateSliderValue(slider.value);
 
     // Update the value display when the slider is moved
-    slider.addEventListener("input", function() {
+    slider.addEventListener("input", function () {
         updateSliderValue(this.value);
     });
 
     function updateSliderValue(value) {
         valueDisplay.innerText = value;
-        
+
         // Update the position of the value display to center it on the handle
         var percent = (value - slider.min) / (slider.max - slider.min) * 100;
         valueDisplay.style.left = `calc(${percent}% - ${valueDisplay.offsetWidth / 2}px)`;
     }
 
     // Scroll event handler
-    slider.addEventListener("wheel", function(e) {
+    slider.addEventListener("wheel", function (e) {
         if (e.deltaY < 0) {
             slider.valueAsNumber = Math.min(slider.valueAsNumber + 5, slider.max);
         } else {
