@@ -54,3 +54,7 @@
   padding-top: 25px;
   background-image: none;
 }
+
+.govuk-input__suffix--hide-right {
+  border-right: 0;
+}
