@@ -58,3 +58,16 @@
 .govuk-input__suffix--hide-right {
   border-right: 0;
 }
+
+
+.slidecontainer {
+  position: relative;
+  width: 100%;
+}
+
+.slider-value {
+  position: absolute;
+  top: -25px; /* Positioning the value above the slider */
+  font-size: 14px;
+  color: #333;
+}

@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="govuk-width-container">
+    <main class="govuk-main-wrapper">
+        <h1 class="govuk-heading-xl">Test Card Generator</h1>
+        <!-- lead paragraph -->
+        <p class="govuk-body">Generate a test card!</p>
+
+        <body>
+            <form action="https://tpg.v0.si/index.html" method="get">
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="event-name">
+                        Station
+                    </label>
+                    <input class="govuk-input govuk-!-width-three-quarters" name="station" id="station" type="text">
+                </div>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="program">
+                        Program
+                    </label>
+                    <textarea class="govuk-textarea govuk-!-width-three-quarters" id="program" name="moreDetail"
+                        rows="3" aria-describedby="more-detail-hint"></textarea>
+                </div>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="logo">
+                        Logo URL
+                    </label>
+                    <input class="govuk-input govuk-!-width-three-quarters" name="logo" id="logo" type="text">
+                </div>
+
+
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="song">
+                        Song
+                    </label>
+                    <div id="location-hint" class="govuk-hint">
+                        If there's no audio, please interact with the test card to trigger.
+                    </div>
+                    <select class="govuk-select" id="song" name="song">
+                        <option value="resources/blits.ogg">Blits</option>
+                        <option value="resources/volvosong.flac" selected>VolvoSong</option>
+                        <option value="resources/song.flac">Song</option>
+                        <option value="resources/dnevnik.ogg">Dnevnik</option>
+                        <option value="resources/synth.mp3">Synth</option>
+                        <option value="resources/surge.mp3">Surge</option>
+                        <option value="resources/aberdeen.mp3">Aberdeen</option>
+                        <option value="resources/irishcoffee.mp3">IrishCoffee</option>
+                    </select>
+                </div>
+
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="volume">
+                      Volume
+                    </label>
+                    <div id="volume-hint" class="govuk-hint">
+                      Please enter a value between 0 and 100.
+                    </div>
+                    <input class="govuk-input govuk-input--width-3 govuk-input--extra-letter-spacing" id="volume" name="volume" type="number" min="0" max="100" step="5" value="50" aria-describedby="volume-hint">
+                  </div>
+
+               
+
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend">
+                            Time Options
+                        </legend>
+                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="millis" name="millis" type="checkbox">
+                                <label class="govuk-label govuk-checkboxes__label" for="millis">
+                                    Milliseconds
+                                </label>
+                            </div>
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="utc" name="utc" type="checkbox">
+                                <label class="govuk-label govuk-checkboxes__label" for="utc">
+                                    UTC Hours
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <button type="submit" class="govuk-button govuk-button--start" data-module="govuk-button">
+                    Generate
+                    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19"
+                        viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+                        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+                    </svg>
+                </button>
+            </form>
+
+
+
+
+
+    </main>
+</div>
+
+
+<script>
+    var slider = document.getElementById("volume");
+    var valueDisplay = document.getElementById("volumeValue");
+
+    // Initialize the position of the value on page load
+    updateSliderValue(slider.value);
+
+    // Update the value display when the slider is moved
+    slider.addEventListener("input", function() {
+        updateSliderValue(this.value);
+    });
+
+    function updateSliderValue(value) {
+        valueDisplay.innerText = value;
+        
+        // Update the position of the value display to center it on the handle
+        var percent = (value - slider.min) / (slider.max - slider.min) * 100;
+        valueDisplay.style.left = `calc(${percent}% - ${valueDisplay.offsetWidth / 2}px)`;
+    }
+
+    // Scroll event handler
+    slider.addEventListener("wheel", function(e) {
+        if (e.deltaY < 0) {
+            slider.valueAsNumber = Math.min(slider.valueAsNumber + 5, slider.max);
+        } else {
+            slider.valueAsNumber = Math.max(slider.valueAsNumber - 5, slider.min);
+        }
+        updateSliderValue(slider.value); // Update value display after scroll
+        e.preventDefault();
+    });
+</script>
+{% endblock %}
