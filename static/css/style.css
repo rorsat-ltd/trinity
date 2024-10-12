@@ -1,3 +1,26 @@
+
+
+@font-face {
+  font-family: GDS Transport;
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/Urbanist-Variable.ttf) format("tryetype");
+  font-display: fallback;
+}
+@font-face {
+  font-family: GDS Transport;
+  font-style: normal;
+  font-weight: 700;
+  src: url(/fonts/Urbanist-Variable.ttf) format("truetype");
+  font-display: fallback;
+}
+
+/*@font-face {
+  font-family: 'GDS Transport';
+  font-weight: 700;
+  src: url(/zlafonts/Urbanist-Variable.ttf) format('truetype');
+}
+*/
 .urbanist-black {
     font-family: "Urbanist", sans-serif;
     font-optical-sizing: auto;
@@ -25,4 +48,9 @@
 /* stop word wrap in banner */
 .govuk-notification-banner__content > * {
     max-width: 100%;
+}
+
+.govuk-footer__copyright-logo {
+  padding-top: 25px;
+  background-image: none;
 }
