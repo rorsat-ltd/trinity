@@ -83,6 +83,7 @@
 .govuk-header__logo {
   display: flex;
   flex-direction: row;
+  padding-right: 10px;
 }
 
 .button-group-flexbox {
@@ -93,4 +94,12 @@
 
 .button-right{
   margin-left: auto;
+}
+
+
+@media screen and (max-width: 600px) {
+  .header-date {
+    visibility: hidden;
+    display: none;
+  }
 }

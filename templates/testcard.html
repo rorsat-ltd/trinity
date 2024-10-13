@@ -9,11 +9,25 @@
 </style>
 
 
+<div class="govuk-width-container app-width-container">
+    <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+            <strong class="govuk-tag govuk-phase-banner__content__tag">
+                Beta
+            </strong>
+            <span class="govuk-phase-banner__text">
+                This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+            </span>
+        </p>
+    </div>
+
+
 <div class="govuk-width-container">
     <main class="govuk-main-wrapper">
         <h1 class="govuk-heading-xl">Test Card Generator</h1>
         <!-- lead paragraph -->
         <p class="govuk-body">Generate a test card!</p>
+        <p class="govuk-body">Thanks to CraftByte for providing the generator, this is a simple front-end.</p>
 
         <body>
             <form action="https://tpg.v0.si/index.html" method="get">
@@ -63,8 +77,21 @@
                         <option value="resources/surge.mp3">Surge</option>
                         <option value="resources/aberdeen.mp3">Aberdeen</option>
                         <option value="resources/irishcoffee.mp3">IrishCoffee</option>
+                        <option value="other">Custom</option>
                     </select>
+
                 </div>
+                <div class="govuk-checkboxes__conditional" id="custom-sound" style="display: none;">
+                    <div class="govuk-form-group">
+                        <label class="govuk-label" for="custom-sound">
+                            Custom sound file (can be local or remote URL).
+                        </label>
+                        <input class="govuk-input govuk-!-width-one-third" id="custom-sound" name="custom-sound-url"
+                            type="text">
+                    </div>
+                </div>
+
+
 
 
                 <div class="govuk-form-group">
@@ -116,6 +143,47 @@
                     </button>
                 </div>
             </form>
+            <p class="govuk-body"><i>This will redirect you to <a href="https://tpg.v0.si/index.html" class="govuk-link">tpg.v0.si</a>. No tracking.</i></p>
     </main>
 </div>
+
+<script>
+    document.getElementById("song").addEventListener("change", function () {
+        var customSound = document.getElementById("custom-sound");
+        if (this.value === "other") {
+            customSound.style.display = "block";
+        } else {
+            customSound.style.display = "none";
+        }
+    });
+
+    function clr() {
+        document.getElementById("station").value = "";
+        document.getElementById("program").value = "";
+        document.getElementById("logo").value = "";
+        document.getElementById("volume").value = "50";
+        document.getElementById("song").value = "resources/volvosong.flac";
+        document.getElementById("custom-sound").value = "";
+        document.getElementById("custom-sound").style.display = "none";
+        document.getElementById("millis").checked = false;
+        document.getElementById("utc").checked = false;
+    }
+
+
+
+    function handleSongChange() {
+        var songSelect = document.getElementById('song');
+        var customSoundInput = document.getElementById('custom-sound');
+        var customSoundUrlInput = document.getElementById('custom-sound-url');
+
+        if (songSelect.value === 'other') {
+            customSoundInput.style.display = 'block';
+            customSoundUrlInput.value = songSelect.value;
+        } else {
+            customSoundInput.style.display = 'none';
+            customSoundUrlInput.value = '';
+        }
+    }
+
+</script>
 {% endblock %}
