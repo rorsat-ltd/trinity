@@ -11,14 +11,14 @@
 }
 
 @font-face {
-  font-family: GDS Transport;
+  font-family: 'Urbanist';
   font-style: normal;
   font-weight: 400;
   src: url(/fonts/Urbanist-Variable.ttf) format("tryetype");
   font-display: fallback;
 }
 @font-face {
-  font-family: GDS Transport;
+  font-family: 'Urbanist';
   font-style: normal;
   font-weight: 700;
   src: url(/fonts/Urbanist-Variable.ttf) format("truetype");
@@ -26,7 +26,7 @@
 }
 
 /*@font-face {
-  font-family: 'GDS Transport';
+  font-family: 'Urbanist';
   font-weight: 700;
   src: url(/zlafonts/Urbanist-Variable.ttf) format('truetype');
 }
@@ -84,3 +84,4 @@
   display: flex;
   flex-direction: row;
 }
+
