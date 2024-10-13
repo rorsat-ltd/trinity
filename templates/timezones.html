@@ -80,7 +80,7 @@
                                 <fieldset class="govuk-fieldset" role="group" aria-describedby="src-date-hint">
                                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                                         <h2 class="govuk-fieldset__heading">
-                                            Source Date
+                                            Source date
                                         </h2>
                                     </legend>
                                     <div id="src-date-hint" class="govuk-hint">
@@ -126,7 +126,7 @@
 
                             <div class="govuk-form-group"> <!--source tz-->
                                 <label class="govuk-label govuk-fieldset__legend--m" for="src-tz">
-                                    Source Timezone
+                                    Source timezone
                                 </label>
                                 <div id="src-tz-hint" class="govuk-hint">
                                     Defaults to system timezone.
@@ -138,7 +138,7 @@
 
                             <div class="govuk-form-group"> <!--dest tz-->
                                 <label class="govuk-label govuk-fieldset__legend--m" for="dest-tz">
-                                    Destination Timezone
+                                    Destination timezone
                                 </label>
                                 <div id="src-tz-hint" class="govuk-hint">
                                     Use _ for spaces.
@@ -164,7 +164,7 @@
                         <div class="tz-right-outputs govuk-grid-column-one-half">
                             <div class="govuk-form-group"> <!-- dest time -->
                                 <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
-                                    Destination Timezone
+                                    Destination
                                 </label>
                                 <div class="govuk-input__wrapper">
                                     <input
@@ -187,13 +187,11 @@
                                 </div>
                             </div>
 
-                            <div class="govuk-form-group"> <!--Rec Time-->
+                            <div class="govuk-form-group" title="This is UTC, minus 3 mins"> <!--Rec Time-->
                                 <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
                                     Record at
                                 </label>
-                                <div id="rec-time-hint" class="govuk-hint">
-                                    Minus 3 mins.
-                                </div>
+                            
                                 <div class="govuk-input__wrapper">
 
                                     <input
@@ -211,7 +209,7 @@
                         <!--action button-->
                         <button type="submit" class="govuk-button" data-module="govuk-button" onclick="timetravel()"
                             id="btn-go">
-                            Timetravel!
+                            TIMETRAVEL!
                         </button>
                     </div>
                     <div class="govuk-grid-column-one-half">
