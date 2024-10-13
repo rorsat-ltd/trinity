@@ -1,6 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!-- timezone nav bar -->
+<div class="govuk-service-navigation" data-module="govuk-service-navigation">
+    <div class="govuk-width-container">
+        <div class="govuk-service-navigation__container">
+            <nav aria-label="Menu" class="govuk-service-navigation__wrapper">
+                <ul class="govuk-service-navigation__list" id="navigation">
+                    <!--<li class="govuk-service-navigation__item govuk-service-navigation__item--active">
+            <a class="govuk-service-navigation__link" href="/timezones" aria-current="true">
+                <strong class="govuk-service-navigation__active-fallback">Custom</strong>
+            </a>
+          </li>-->
+                    <li class="govuk-service-navigation__item">
+                        <a class="govuk-service-navigation__link" href="/timezones/presets">
+                            <strong class="govuk-service-navigation__active-fallback">Presets</strong>
+                        </a>
+                    </li>
+                    <!--<li class="govuk-service-navigation__item">
+            <a class="govuk-service-navigation__link" href="#">
+              Navigation item 3
+            </a>
+          </li>-->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
 
 <div class="govuk-width-container app-width-container">
     <div class="govuk-phase-banner">
@@ -41,7 +67,7 @@
                                     Source time
                                 </label>
                                 <div id="src-time-hint" class="govuk-hint">
-                                    Defaults to local time.
+                                    Defaults to system time.
                                 </div>
                                 <div class="govuk-input__wrapper">
 
@@ -112,10 +138,10 @@
 
                             <div class="govuk-form-group"> <!--dest tz-->
                                 <label class="govuk-label govuk-fieldset__legend--m" for="dest-tz">
-                                    Translate to Timezone
+                                    Destination Timezone
                                 </label>
                                 <div id="src-tz-hint" class="govuk-hint">
-                                    Defaults to New York.<br>Use _ for spaces.
+                                    Use _ for spaces.
                                 </div>
                                 <div class="govuk-input__wrapper" id="dest-tz-autocomplete">
                                     <div id="dest-tz"></div>
@@ -138,13 +164,14 @@
                         <div class="tz-right-outputs govuk-grid-column-one-half">
                             <div class="govuk-form-group"> <!-- dest time -->
                                 <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
-                                    Translated Timezone
+                                    Destination Timezone
                                 </label>
                                 <div class="govuk-input__wrapper">
-                                    <input class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
+                                    <input
+                                        class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
                                         id="dest-time" name="dest-time" type="text" spellcheck="false" readonly="true"
                                         disabled="true">
-                                    <div class="govuk-input__suffix" aria-hidden="true">HH:MM</div>
+
                                 </div>
                             </div>
                             <div class="govuk-form-group"> <!--UTC Time-->
@@ -153,26 +180,26 @@
                                 </label>
                                 <div class="govuk-input__wrapper">
 
-                                    <input class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
+                                    <input
+                                        class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
                                         id="utc-time" name="utc-time" type="text" spellcheck="false" readonly="true"
                                         disabled="true">
-                                    <div class="govuk-input__suffix" aria-hidden="true">HH:MM</div>
                                 </div>
                             </div>
 
                             <div class="govuk-form-group"> <!--Rec Time-->
                                 <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
-                                    Record at:
+                                    Record at
                                 </label>
                                 <div id="rec-time-hint" class="govuk-hint">
                                     Minus 3 mins.
                                 </div>
                                 <div class="govuk-input__wrapper">
 
-                                    <input class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
+                                    <input
+                                        class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
                                         id="rec-time" name="rec-time" type="text" spellcheck="false" readonly="true"
                                         disabled="true">
-                                    <div class="govuk-input__suffix" aria-hidden="true">HH:MM</div>
                                 </div>
                             </div>
                         </div>
@@ -180,23 +207,23 @@
                 </div>
                 <div class="govuk-grid-row">
 
-                        <div class="govuk-grid-column-one-half">
-                            <!--action button-->
-                            <button type="submit" class="govuk-button" data-module="govuk-button" onclick="timetravel()"
-                                id="btn-go">
-                                Timetravel!
-                            </button>
+                    <div class="govuk-grid-column-one-half">
+                        <!--action button-->
+                        <button type="submit" class="govuk-button" data-module="govuk-button" onclick="timetravel()"
+                            id="btn-go">
+                            Timetravel!
+                        </button>
+                    </div>
+                    <div class="govuk-grid-column-one-half">
+                        <!--clear button-->
+                        <div class="govuk-exit-this-page" data-module="govuk-exit-this-page">
+                            <a href="/timezones" role="button" draggable="false"
+                                class="govuk-button govuk-button--warning govuk-exit-this-page__button govuk-js-exit-this-page-button"
+                                data-module="govuk-button" rel="nofollow noreferrer">
+                                <span class="govuk-visually-hidden">Reset</span>Reset
+                            </a>
                         </div>
-                        <div class="govuk-grid-column-one-half">
-                            <!--clear button-->
-                            <div class="govuk-exit-this-page" data-module="govuk-exit-this-page">
-                                <a href="/timezones" role="button" draggable="false"
-                                    class="govuk-button govuk-button--warning govuk-exit-this-page__button govuk-js-exit-this-page-button"
-                                    data-module="govuk-button" rel="nofollow noreferrer">
-                                    <span class="govuk-visually-hidden">Reset</span>Reset
-                                </a>
-                            </div>
-                        </div>
+                    </div>
 
 
                 </div>
@@ -287,7 +314,6 @@
         autoselect: true,
         minLength: 1,
         inputClasses: 'govuk-input',
-        defaultValue: "America/New_York",
     })
 
     addEventListener("keypress", function (event) {

@@ -1,0 +1,510 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- timezone nav bar -->
+<div class="govuk-service-navigation" data-module="govuk-service-navigation">
+    <div class="govuk-width-container">
+        <div class="govuk-service-navigation__container">
+            <nav aria-label="Menu" class="govuk-service-navigation__wrapper">
+                <ul class="govuk-service-navigation__list" id="navigation">
+                    <!--<li class="govuk-service-navigation__item ">
+                        <a class="govuk-service-navigation__link" href="/timezones" aria-current="true">
+                            Custom
+                        </a>
+                    </li> -->
+                    <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
+                        <a class="govuk-service-navigation__link" href="/timezones/presets">
+                            <strong class="govuk-service-navigation__active-fallback">Presets</strong>
+                        </a>
+                    </li>
+                    <!--<li class="govuk-service-navigation__item">
+            <a class="govuk-service-navigation__link" href="#">
+              Navigation item 3
+            </a>
+          </li>-->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="govuk-width-container app-width-container">
+    <div class="govuk-phase-banner">
+
+        <p class="govuk-phase-banner__content">
+            <strong class="govuk-tag govuk-phase-banner__content__tag govuk-phase-banner-tag-yellow">
+                In Progress
+            </strong>
+            <strong class="govuk-tag govuk-phase-banner__content__tag">
+                Beta
+            </strong>
+
+            <span class="govuk-phase-banner__text">
+                This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+            </span>
+        </p>
+    </div>
+    <a href="/timezones" class="govuk-back-link">Back</a>
+</div>
+
+
+
+<div class="govuk-width-container">
+    <main class="govuk-main-wrapper">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+                <h1 class="govuk-heading-xl">Presets</h1>
+                <p class="govuk-body">Use the buttons below to quickly calculate the time in a different timezone.</p>
+            </div>
+        </div>
+
+
+
+        <div class="govuk-grid-row">
+
+            <div class="govuk-form-group govuk-grid-column-one-half"> <!--source time-->
+                <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
+                    Source time
+                </label>
+                <div id="src-time-hint" class="govuk-hint">
+                    Defaults to system time.
+                </div>
+                <div class="govuk-input__wrapper">
+
+                    <input class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing" id="src-time"
+                        name="src-time" type="text" spellcheck="false">
+                    <div class="govuk-input__suffix" aria-hidden="true">HHMM</div>
+                </div>
+            </div>
+            <div class="govuk-form-group govuk-grid-column-one-half"> <!--source date-->
+                <fieldset class="govuk-fieldset" role="group" aria-describedby="src-date-hint">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" style="margin-bottom: 0;">
+                        <h2 class="govuk-fieldset__heading " style="margin-bottom: 15px;">
+                            Source Date
+                        </h2>
+                    </legend>
+                    <div class="govuk-date-input" id="src-date">
+                        <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-date-input__label " for="src-date-day"
+                                    style="margin-bottom: 10px;">
+                                    Day
+                                </label>
+                                <input
+                                    class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--extra-letter-spacing"
+                                    id="src-date-day" name="src-date-day" type="text" inputmode="numeric">
+                            </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-date-input__label" for="src-date-month"
+                                    style="margin-bottom: 10px;">
+                                    Month
+                                </label>
+                                <input
+                                    class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--extra-letter-spacing"
+                                    id="src-date-month" name="src-date-month" type="text" inputmode="numeric">
+                            </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label govuk-date-input__label" for="src-date-year"
+                                    style="margin-bottom: 10px;">
+                                    Year
+                                </label>
+                                <input
+                                    class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--extra-letter-spacing"
+                                    id="src-date-year" name="src-date-year" type="text" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-three-quarters" style="display: flex; justify-content: center; gap: 10px;">
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--green"
+                    data-module="govuk-button" onclick="lony()" id="btn-lony">
+                    LONY
+                </button>
+
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--green"
+                    data-module="govuk-button" onclick="nylo()" id="btn-nylo">
+                    NYLO
+                </button>
+
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--blue"
+                    data-module="govuk-button" onclick="lola()" id="btn-lola">
+                    LOLA
+                </button>
+
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--blue"
+                    data-module="govuk-button" onclick="lalo()" id="btn-lalo">
+                    LALO
+                </button>
+
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--pink"
+                    data-module="govuk-button" onclick="nyla()" id="btn-nyla">
+                    NYLA
+                </button>
+
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--pink"
+                    data-module="govuk-button" onclick="lany()" id="btn-lany">
+                    LANY
+                </button>
+            </div>
+            <div class="govuk-grid-column-one-quarter" style="display: flex; justify-content: right;">
+                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button"
+                    onclick="clr()" id="btn-reset">
+                    Reset
+                </button>
+            </div>
+        </div>
+        <!--
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-three-quarters" style="display: flex; justify-content: center; gap: 5px;">
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
+                    data-module="govuk-button" onclick="add1hr()" id="btn-add1h">
+                    +1h
+                </button>
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
+                    data-module="govuk-button" onclick="add30m()" id="btn-add30m">
+                    +30m
+                </button>
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
+                    data-module="govuk-button" onclick="add15m()" id="btn-add15m">
+                    +15m
+                </button>
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
+                    data-module="govuk-button" onclick="add5m()" id="btn-add5m">
+                    +5m
+                </button>
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
+                    data-module="govuk-button" onclick="min5m()" id="btn-min5m">
+                    -5m
+                </button>
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
+                    data-module="govuk-button" onclick="min15m()" id="btn-min15m">
+                    -15m
+                </button>
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
+                    data-module="govuk-button" onclick="min30m()" id="btn-min30m">
+                    -30m
+                </button>
+                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
+                    data-module="govuk-button" onclick="min1h()" id="btn-min1h">
+                    -1h
+                </button>
+            </div>
+        </div>
+    -->
+        <div class="govuk-grid-row">
+            <div class="govuk-form-group govuk-grid-column-one-quarter"> <!-- dest time -->
+                <label class="govuk-label govuk-fieldset__legend--m" for="preset">
+                    Preset
+                </label>
+                <div class="govuk-input__wrapper">
+                    <input class="govuk-input govuk-input--width-4" id="preset" name="preset" type="text"
+                        spellcheck="false" readonly="true" disabled="true">
+
+                </div>
+            </div>
+            <div class="govuk-form-group govuk-grid-column-one-quarter"> <!-- dest time -->
+                <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
+                    Destination
+                </label>
+                <div class="govuk-input__wrapper">
+                    <input
+                        class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
+                        id="dest-time" name="dest-time" type="text" spellcheck="false" readonly="true" disabled="true">
+
+                </div>
+            </div>
+            <div class="govuk-form-group govuk-grid-column-one-quarter"> <!--UTC Time-->
+                <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
+                    UTC
+                </label>
+                <div class="govuk-input__wrapper">
+
+                    <input
+                        class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
+                        id="utc-time" name="utc-time" type="text" spellcheck="false" readonly="true" disabled="true">
+
+                </div>
+            </div>
+
+            <div class="govuk-form-group govuk-grid-column-one-quarter"> <!--Rec Time-->
+                <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
+                    Record at
+                </label>
+                <div class="govuk-input__wrapper">
+
+                    <input
+                        class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
+                        id="rec-time" name="rec-time" type="text" spellcheck="false" readonly="true" disabled="true">
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment-with-locales.min.js"
+    integrity="sha512-4F1cxYdMiAW98oomSLaygEwmCnIP38pb4Kx70yQYqRwLVCs3DbRumfBq82T08g/4LJ/smbFGFpmeFlQgoDccgg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone-with-data-10-year-range.js"
+    integrity="sha512-s932Fui209TZcBY5LqdHKbANLKNneRzBib2GE3HkZUQtoWY3LBUN2kaaZDK7+8z8WnFY23TPUNsDmIAY1AplPg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script>
+    //fill defaults
+    document.getElementById('src-date-day').value = moment().format("DD");
+    document.getElementById('src-date-month').value = moment().format("MM");
+    document.getElementById('src-date-year').value = moment().format("YYYY");
+    document.getElementById('src-time').value = moment().format("HHmm");
+
+
+
+    //const timezones
+    const utc = "UTC";
+    const ny = "America/New_York";
+    const lo = "Europe/London";
+    const la = "America/Los_Angeles";
+
+
+
+    function lony() { //london new york
+        console.log("LONY")
+        let srcTime = document.getElementById('src-time').value;
+        let srcDateDay = document.getElementById('src-date-day').value;
+        let srcDateMonth = document.getElementById('src-date-month').value;
+        let srcDateYear = document.getElementById('src-date-year').value;
+        let srcTz = lo;
+        let destTz = ny;
+
+        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
+        console.log("parsing input", parsed.format());
+
+
+        let destTime = parsed.clone().tz(destTz).format("HH:mm");
+        let utcTime = parsed.clone().utc().format("HH:mm");
+        console.log("destTime", destTime);
+        console.log("utcTime", utcTime);
+
+        document.getElementById('dest-time').value = destTime;
+        document.getElementById('utc-time').value = utcTime;
+        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
+        document.getElementById('rec-time').value = recTime;
+        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
+        document.getElementById('preset').value = "LONY";
+    }
+
+    function nylo() { //new york london
+        console.log("NYLO")
+        let srcTime = document.getElementById('src-time').value;
+        let srcDateDay = document.getElementById('src-date-day').value;
+        let srcDateMonth = document.getElementById('src-date-month').value;
+        let srcDateYear = document.getElementById('src-date-year').value;
+        let srcTz = ny;
+        let destTz = lo;
+
+        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
+        console.log("parsing input", parsed.format());
+
+
+        let destTime = parsed.clone().tz(destTz).format("HH:mm");
+        let utcTime = parsed.clone().utc().format("HH:mm");
+        console.log("destTime", destTime);
+        console.log("utcTime", utcTime);
+
+        document.getElementById('dest-time').value = destTime;
+        document.getElementById('utc-time').value = utcTime;
+        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
+        document.getElementById('rec-time').value = recTime;
+        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
+        document.getElementById('preset').value = "NYLO";
+    }
+
+    function lola() { //london LA
+        console.log("LOLA")
+        let srcTime = document.getElementById('src-time').value;
+        let srcDateDay = document.getElementById('src-date-day').value;
+        let srcDateMonth = document.getElementById('src-date-month').value;
+        let srcDateYear = document.getElementById('src-date-year').value;
+        let srcTz = lo;
+        let destTz = la;
+
+        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
+        console.log("parsing input", parsed.format());
+
+
+        let destTime = parsed.clone().tz(destTz).format("HH:mm");
+        let utcTime = parsed.clone().utc().format("HH:mm");
+        console.log("destTime", destTime);
+        console.log("utcTime", utcTime);
+
+        document.getElementById('dest-time').value = destTime;
+        document.getElementById('utc-time').value = utcTime;
+        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
+        document.getElementById('rec-time').value = recTime;
+        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
+        document.getElementById('preset').value = "LOLA";
+    }
+
+    function lalo() { // LA London
+        console.log("LALO")
+        let srcTime = document.getElementById('src-time').value;
+        let srcDateDay = document.getElementById('src-date-day').value;
+        let srcDateMonth = document.getElementById('src-date-month').value;
+        let srcDateYear = document.getElementById('src-date-year').value;
+        let srcTz = la;
+        let destTz = lo;
+
+        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
+        console.log("parsing input", parsed.format());
+
+
+        let destTime = parsed.clone().tz(destTz).format("HH:mm");
+        let utcTime = parsed.clone().utc().format("HH:mm");
+        console.log("destTime", destTime);
+        console.log("utcTime", utcTime);
+
+        document.getElementById('dest-time').value = destTime;
+        document.getElementById('utc-time').value = utcTime;
+        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
+        document.getElementById('rec-time').value = recTime;
+        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
+        document.getElementById('preset').value = "LALO";
+    }
+
+    function nyla() { // New York LA
+        console.log("NYLA")
+        let srcTime = document.getElementById('src-time').value;
+        let srcDateDay = document.getElementById('src-date-day').value;
+        let srcDateMonth = document.getElementById('src-date-month').value;
+        let srcDateYear = document.getElementById('src-date-year').value;
+        let srcTz = ny;
+        let destTz = la;
+
+        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
+        console.log("parsing input", parsed.format());
+
+
+        let destTime = parsed.clone().tz(destTz).format("HH:mm");
+        let utcTime = parsed.clone().utc().format("HH:mm");
+        console.log("destTime", destTime);
+        console.log("utcTime", utcTime);
+
+        document.getElementById('dest-time').value = destTime;
+        document.getElementById('utc-time').value = utcTime;
+        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
+        document.getElementById('rec-time').value = recTime;
+        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
+        document.getElementById('preset').value = "NYLA";
+    }
+
+    function lany() { // LA New York
+        console.log("LANY")
+        let srcTime = document.getElementById('src-time').value;
+        let srcDateDay = document.getElementById('src-date-day').value;
+        let srcDateMonth = document.getElementById('src-date-month').value;
+        let srcDateYear = document.getElementById('src-date-year').value;
+        let srcTz = la;
+        let destTz = ny;
+
+        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
+        console.log("parsing input", parsed.format());
+
+
+        let destTime = parsed.clone().tz(destTz).format("HH:mm");
+        let utcTime = parsed.clone().utc().format("HH:mm");
+        console.log("destTime", destTime);
+        console.log("utcTime", utcTime);
+
+        document.getElementById('dest-time').value = destTime;
+        document.getElementById('utc-time').value = utcTime;
+        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
+        document.getElementById('rec-time').value = recTime;
+        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
+        document.getElementById('preset').value = "LANY";
+    }
+
+    function clr() {
+        document.getElementById('src-time').value = moment().format("HHmm");
+        document.getElementById('src-date-day').value = moment().format("DD");
+        document.getElementById('src-date-month').value = moment().format("MM");
+        document.getElementById('src-date-year').value = moment().format("YYYY");
+        document.getElementById('dest-time').value = "";
+        document.getElementById('utc-time').value = "";
+        document.getElementById('rec-time').value = "";
+        document.getElementById('preset').value = "";
+        console.log("cleared");
+    }
+
+    /*
+    function add1hr() {
+        let srcTime = document.getElementById('src-time').value;
+        let destTime = document.getElementById('dest-time').value.format("HHmm");
+        let utcTime = document.getElementById('utc-time').value.format("HHmm");
+        let recTime = document.getElementById('rec-time').value.format("HHmm");
+        let parsed = moment(`${srcTime.match(/\d{2}/g).join(":")}`, "HH:mm");
+        let newTime = parsed.add(1, 'hour').format("HHmm");
+        let newDest = destTime.add(1, 'hour').format("HHmm");
+        let newUtc = utcTime.add(1, 'hour').format("HHmm");
+        let newRec = recTime.add(1, 'hour').format("HHmm");
+        document.getElementById('src-time').value = newTime;
+        
+        document.getElementById('dest-time').value = newDest;
+        document.getElementById('utc-time').value = newUtc;
+        document.getElementById('rec-time').value = newRec;
+        console.log("added 1 hour", newTime);
+    }
+*/
+
+    addEventListener("keypress", function (event) {
+        if (event.key === "a") {
+            document.getElementById("btn-lony").click();
+        }
+        if (event.key === "s") {
+            document.getElementById("btn-nylo").click();
+        }
+        if (event.key === "d") {
+            document.getElementById("btn-lola").click();
+        }
+        if (event.key === "f") {
+            document.getElementById("btn-lalo").click();
+        }
+        if (event.key === "g") {
+            document.getElementById("btn-nyla").click();
+        }
+        if (event.key === "h") {
+            document.getElementById("btn-lany").click();
+        }
+        if (event.key === "r") {
+            document.getElementById("btn-reset").click();
+        }
+    });
+
+</script>
+{% endblock %}
