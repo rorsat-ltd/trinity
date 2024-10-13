@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://telstar.rorsat.com"
+base_url = "https://trinity.rorsat.com"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
