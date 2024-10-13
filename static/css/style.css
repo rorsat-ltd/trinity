@@ -11,14 +11,14 @@
 }
 
 @font-face {
-  font-family: 'Urbanist';
+  font-family: "Urbanist";
   font-style: normal;
   font-weight: 400;
   src: url(/fonts/Urbanist-Variable.ttf) format("tryetype");
   font-display: fallback;
 }
 @font-face {
-  font-family: 'Urbanist';
+  font-family: "Urbanist";
   font-style: normal;
   font-weight: 700;
   src: url(/fonts/Urbanist-Variable.ttf) format("truetype");
@@ -67,7 +67,6 @@
   border-right: 0;
 }
 
-
 .govuk-header__nolink {
   display: inline-block;
   margin-right: 10px;
@@ -92,10 +91,24 @@
   align-items: flex-start;
 }
 
-.button-right{
+.button-right {
   margin-left: auto;
 }
 
+.govuk-phase-banner-tag-red {
+  background-color: #f4cdc6;
+  color: #2a0b06;
+}
+
+.govuk-phase-banner-tag-green {
+  background-color: #cce2d8;
+  color: #005a30;
+}
+
+.govuk-phase-banner-tag-yellow {
+  background-color: #fff7bf;
+  color: #594d00;
+}
 
 @media screen and (max-width: 600px) {
   .header-date {
