@@ -85,16 +85,6 @@
   padding-right: 10px;
 }
 
-.button-group-flexbox {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-.button-right {
-  margin-left: auto;
-}
-
 .govuk-phase-banner-tag-red {
   background-color: #f4cdc6;
   color: #2a0b06;

@@ -81,7 +81,7 @@
                 Result
             </label>
             <div class="govuk-input__wrapper">
-                <input type="text" id="result-box" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" spellcheck="false"
+                <input type="text" id="result-box" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing govuk-!-font-weight-bold" spellcheck="false"
                     readonly="true" disabled="true">
             </div>
         </div>
@@ -92,7 +92,7 @@
                 Frequency
             </label>
             <div class="govuk-input__wrapper">
-                <input type="text" id="freq-res" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" spellcheck="false"
+                <input type="text" id="freq-res" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing govuk-!-font-weight-bold" spellcheck="false"
                     inputmode="numeric" readonly="true" disabled="true">
                 <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
             </div>
@@ -177,9 +177,6 @@ function clr() {
 addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
             document.getElementById("btn-go").click();
-        }
-        if (event.key === "r") {
-            document.getElementById("btn-clear").click();
         }
     });
 
