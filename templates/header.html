@@ -28,3 +28,14 @@
   </div>
 </header>
 
+<script>
+
+  //header date
+document.addEventListener("DOMContentLoaded", function() {
+    var dateElement = document.getElementById("header-date");
+    if (dateElement) {
+        var currentDate = new Date().toDateString();
+        dateElement.textContent = currentDate;
+    }
+});
+</script>

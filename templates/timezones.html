@@ -23,129 +23,171 @@
 
     <div class="govuk-width-container">
         <main class="govuk-main-wrapper">
-            <h1 class="govuk-heading-xl">Timezones are a mess and make my brain hurt.</h1>
-            <!-- lead paragraph -->
-            <!--<p class="govuk-body">This will contain a timezone calculator at some point.</p>-->
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <h1 class="govuk-heading-xl">Timezones are a mess and make my brain hurt.</h1>
+                    <!-- lead paragraph -->
+                    <!--<p class="govuk-body">This will contain a timezone calculator at some point.</p>-->
+                </div>
+            </div>
             <div class="govuk-body">
-                <div class="govuk-form-group">
-                    <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
-                        Source time
-                    </label>
-                    <div id="src-time-hint" class="govuk-hint">
-                        Defaults to local time.
-                    </div>
-                    <div class="govuk-input__wrapper">
 
-                        <input class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing" id="src-time" name="src-time" type="text"
-                            spellcheck="false">
-                        <div class="govuk-input__suffix" aria-hidden="true">HHMM</div>
-                    </div>
-                </div>
-                <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset" role="group" aria-describedby="src-date-hint">
-                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                            <h2 class="govuk-fieldset__heading">
-                                Source Date
-                            </h2>
-                        </legend>
-                        <div id="src-date-hint" class="govuk-hint">
-                            Defaults to system date.
+
+                <div class="timezone-form ">
+                    <div class="govuk-grid-row">
+                        <div class="tz-left-inputs govuk-grid-column-one-half">
+                            <div class="govuk-form-group"> <!--source time-->
+                                <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
+                                    Source time
+                                </label>
+                                <div id="src-time-hint" class="govuk-hint">
+                                    Defaults to local time.
+                                </div>
+                                <div class="govuk-input__wrapper">
+
+                                    <input class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing"
+                                        id="src-time" name="src-time" type="text" spellcheck="false">
+                                    <div class="govuk-input__suffix" aria-hidden="true">HHMM</div>
+                                </div>
+                            </div>
+                            <div class="govuk-form-group"> <!--source date-->
+                                <fieldset class="govuk-fieldset" role="group" aria-describedby="src-date-hint">
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                        <h2 class="govuk-fieldset__heading">
+                                            Source Date
+                                        </h2>
+                                    </legend>
+                                    <div id="src-date-hint" class="govuk-hint">
+                                        Defaults to system date.
+                                    </div>
+                                    <div class="govuk-date-input" id="src-date">
+                                        <div class="govuk-date-input__item">
+                                            <div class="govuk-form-group">
+                                                <label class="govuk-label govuk-date-input__label " for="src-date-day">
+                                                    Day
+                                                </label>
+                                                <input
+                                                    class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--extra-letter-spacing"
+                                                    id="src-date-day" name="src-date-day" type="text"
+                                                    inputmode="numeric">
+                                            </div>
+                                        </div>
+                                        <div class="govuk-date-input__item">
+                                            <div class="govuk-form-group">
+                                                <label class="govuk-label govuk-date-input__label" for="src-date-month">
+                                                    Month
+                                                </label>
+                                                <input
+                                                    class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--extra-letter-spacing"
+                                                    id="src-date-month" name="src-date-month" type="text"
+                                                    inputmode="numeric">
+                                            </div>
+                                        </div>
+                                        <div class="govuk-date-input__item">
+                                            <div class="govuk-form-group">
+                                                <label class="govuk-label govuk-date-input__label" for="src-date-year">
+                                                    Year
+                                                </label>
+                                                <input
+                                                    class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--extra-letter-spacing"
+                                                    id="src-date-year" name="src-date-year" type="text"
+                                                    inputmode="numeric">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="govuk-form-group"> <!--source tz-->
+                                <label class="govuk-label govuk-fieldset__legend--m" for="src-tz">
+                                    Source Timezone
+                                </label>
+                                <div id="src-tz-hint" class="govuk-hint">
+                                    Defaults to system timezone.
+                                </div>
+                                <div class="govuk-input__wrapper" id="src-tz-autocomplete">
+                                    <div id="src-tz"></div>
+                                </div>
+                            </div>
+
+                            <div class="govuk-form-group"> <!--dest tz-->
+                                <label class="govuk-label govuk-fieldset__legend--m" for="dest-tz">
+                                    Translate to Timezone
+                                </label>
+                                <div id="src-tz-hint" class="govuk-hint">
+                                    Defaults to New York.<br>Use _ for spaces.
+                                </div>
+                                <div class="govuk-input__wrapper" id="dest-tz-autocomplete">
+                                    <div id="dest-tz"></div>
+                                </div>
+                            </div>
+
+                            <!-- 
+                            swap src dest tz - NOT WORKING
+                            <div class="govuk-form-group" style="margin-bottom: 0;"> 
+                                <button type="submit" class="govuk-button govuk-button--secondary"
+                                    data-module="govuk-button" onclick="swapTz()" id="swap-tz">
+                                    <i class="fa-solid fa-rotate"></i> Swap
+                                </button>
+                            </div> -->
+
                         </div>
-                        <div class="govuk-date-input" id="src-date">
-                            <div class="govuk-date-input__item">
-                                <div class="govuk-form-group">
-                                    <label class="govuk-label govuk-date-input__label " for="src-date-day">
-                                        Day
-                                    </label>
-                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--extra-letter-spacing"
-                                        id="src-date-day" name="src-date-day" type="text" inputmode="numeric">
+
+
+
+                        <div class="tz-right-outputs govuk-grid-column-one-half">
+                            <div class="govuk-form-group"> <!-- dest time -->
+                                <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
+                                    Translated Timezone
+                                </label>
+                                <div class="govuk-input__wrapper">
+                                    <input class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing"
+                                        id="dest-time" name="dest-time" type="text" spellcheck="false" readonly="true"
+                                        disabled="true">
+                                    <div class="govuk-input__suffix" aria-hidden="true">HH:MM</div>
                                 </div>
                             </div>
-                            <div class="govuk-date-input__item">
-                                <div class="govuk-form-group">
-                                    <label class="govuk-label govuk-date-input__label" for="src-date-month">
-                                        Month
-                                    </label>
-                                    <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--extra-letter-spacing"
-                                        id="src-date-month" name="src-date-month" type="text" inputmode="numeric">
+                            <div class="govuk-form-group"> <!--UTC Time-->
+                                <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
+                                    UTC
+                                </label>
+                                <div class="govuk-input__wrapper">
+
+                                    <input class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing"
+                                        id="utc-time" name="utc-time" type="text" spellcheck="false" readonly="true"
+                                        disabled="true">
+                                    <div class="govuk-input__suffix" aria-hidden="true">HH:MM</div>
                                 </div>
                             </div>
-                            <div class="govuk-date-input__item">
-                                <div class="govuk-form-group">
-                                    <label class="govuk-label govuk-date-input__label" for="src-date-year">
-                                        Year
-                                    </label>
-                                    <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--extra-letter-spacing"
-                                        id="src-date-year" name="src-date-year" type="text" inputmode="numeric">
+
+                            <div class="govuk-form-group"> <!--Rec Time-->
+                                <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
+                                    Record at:
+                                </label>
+                                <div id="rec-time-hint" class="govuk-hint">
+                                    Minus 3 mins.
+                                </div>
+                                <div class="govuk-input__wrapper">
+
+                                    <input class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing"
+                                        id="rec-time" name="rec-time" type="text" spellcheck="false" readonly="true"
+                                        disabled="true">
+                                    <div class="govuk-input__suffix" aria-hidden="true">HH:MM</div>
                                 </div>
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
                 </div>
 
-                <div class="govuk-form-group">
-                    <label class="govuk-label govuk-fieldset__legend--m" for="src-tz">
-                        Source Timezone
-                    </label>
-                    <div id="src-tz-hint" class="govuk-hint">
-                        Defaults to system timezone.
-                    </div>                    
-                    <div class="govuk-input__wrapper">
-                        <input type="text" id="src-tz" class="govuk-input govuk-input--width-10" spellcheck="false">
-                    </div>
-                </div>
-                <div class="govuk-form-group">
-                    <label class="govuk-label govuk-fieldset__legend--m" for="dest-tz">
-                        Translate to Timezone
-                    </label>
-                    <div class="govuk-input__wrapper">
-                        <input type="text" id="dest-tz" class="govuk-input govuk-input--width-10" spellcheck="false">
-                    </div>
-                </div>
-                <div class="govuk-form-group">
-                    <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
-                        Translated Timezone
-                    </label>
-                    <div class="govuk-input__wrapper">
-                        <input class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing" id="dest-time" name="dest-time" type="text"
-                            spellcheck="false" readonly="true" disabled="true">
-                        <div class="govuk-input__suffix" aria-hidden="true">HH:MM</div>
-                    </div>
-                </div>
-                <div class="govuk-form-group">
-                    <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
-                        UTC
-                    </label>
-                    <div class="govuk-input__wrapper">
-
-                        <input class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing" id="utc-time" name="utc-time" type="text"
-                            spellcheck="false" readonly="true" disabled="true">
-                        <div class="govuk-input__suffix" aria-hidden="true">HH:MM</div>
-                    </div>
-                </div>
-                <!--
-                <div class="govuk-form-group">
-                    <label class="govuk-label" for="width-2">
-                       Start recording at:
-                    </label>
-                    <div id="program-hint" class="govuk-hint">
-                        Minus 3 mins from time.
-                    </div>
-                    <div class="govuk-input__wrapper">
-
-                        <input class="govuk-input govuk-input--width-4" id="weight" name="weight" type="text"
-                            spellcheck="false">
-                        <div class="govuk-input__suffix" aria-hidden="true">HHMM</div>
-                    </div>
-                </div>
-            -->
                 <div class="govuk-button-group button-group-flex">
-                    <button type="submit" class="govuk-button" data-module="govuk-button" onclick="timetravel()" id="go">
+                    <!--action button-->
+                    <button type="submit" class="govuk-button" data-module="govuk-button" onclick="timetravel()"
+                        id="btn-go">
                         Timetravel!
                     </button>
 
-
-                    <button id="clear" type="submit" class="govuk-button govuk-button--warning button-right"
+                    <!--clear button-->
+                    <button id="btn-reset" type="submit" class="govuk-button govuk-button--warning button-right"
                         data-module="govuk-button" onclick="window.location.reload();">
                         Reset
                     </button>
@@ -168,15 +210,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone-with-data-10-year-range.js"
     integrity="sha512-s932Fui209TZcBY5LqdHKbANLKNneRzBib2GE3HkZUQtoWY3LBUN2kaaZDK7+8z8WnFY23TPUNsDmIAY1AplPg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="/js/accessible-autocomplete.min.js"></script>
 
 
 
 <script>
-
+    //conform inputs
     document.getElementById('src-date-day').value = moment().format("DD");
     document.getElementById('src-date-month').value = moment().format("MM");
     document.getElementById('src-date-year').value = moment().format("YYYY");
     document.getElementById('src-time').value = moment().format("HHmm");
+
+    //fill defaults
     document.getElementById('src-tz').value = moment.tz.guess();
     document.getElementById('dest-tz').value = "America/New_York";
 
@@ -189,7 +234,7 @@
         let destTz = document.getElementById('dest-tz').value;
         const utc = "UTC";
         let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
-        console.log("parsing input",parsed.format());
+        console.log("parsing input", parsed.format());
 
         let destTime = parsed.clone().tz(destTz).format("HH:mm");
         let utcTime = parsed.clone().utc().format("HH:mm");
@@ -198,17 +243,54 @@
 
         document.getElementById('dest-time').value = destTime;
         document.getElementById('utc-time').value = utcTime;
+        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
+        document.getElementById('rec-time').value = recTime;
+        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
     }
 
+    // not working
+    //function swapTz() {
+    //    let srcTz = document.getElementById('src-tz').value;
+    //    let destTz = document.getElementById('dest-tz').value;
+    //    document.getElementById('src-tz').value = destTz;
+    //    document.getElementById('dest-tz').value = srcTz;
+    //}
 
 
+    const timezones = moment.tz.names();
 
+    //autocomplete for source timezone
+    accessibleAutocomplete({
+        element: document.querySelector('#src-tz-autocomplete'),
+        id: 'src-tz', // To match it to the existing <label>.
+        source: timezones,
+        displayMenu: 'overlay',
+        autoselect: true,
+        minLength: 1,
+        inputClasses: 'govuk-input',
+        defaultValue: moment.tz.guess(),
+    })
 
-    //accessibleAutocomplete({
-    //    element: document.querySelector('#src-tz'),
-    //    id: 'src-tz', // To match it to the existing <label>.
-    //    source: moment.tz.names()
-    //})
+    //autocomplete for destination timezone
+    accessibleAutocomplete({
+        element: document.querySelector('#dest-tz-autocomplete'),
+        id: 'dest-tz', // To match it to the existing <label>.
+        source: timezones,
+        displayMenu: 'overlay',
+        autoselect: true,
+        minLength: 1,
+        inputClasses: 'govuk-input',
+        defaultValue: "America/New_York",
+    })
+
+    addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            document.getElementById("btn-go").click();
+        }
+        if (event.key === "r") {
+            document.getElementById("btn-reset").click();
+        }
+    });
 
 </script>
 {% endblock %}
