@@ -67,8 +67,33 @@
                             </div>
                             <input class="govuk-input govuk-!-width-three-quarters" name="logo" id="logo" type="text">
                         </div>
+                        <div class="govuk-form-group">
+                            <fieldset class="govuk-fieldset">
+                                <legend class="govuk-fieldset__legend">
+                                    Time Options
+                                </legend>
+                                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="millis" name="millis"
+                                            type="checkbox">
+                                        <label class="govuk-label govuk-checkboxes__label" for="millis">
+                                            Milliseconds
+                                        </label>
+                                    </div>
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="utc" name="utc" type="checkbox">
+                                        <label class="govuk-label govuk-checkboxes__label" for="utc">
+                                            UTC Hours
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
 
-
+                    </div>
+                </div>
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-one-half">
 
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="song">
@@ -101,60 +126,52 @@
                                     name="custom-sound-url" type="text">
                             </div>
                         </div>
-
-
                     </div>
-                </div>
-                <div class="govuk-grid-row">
                     <div class="govuk-grid-column-one-half">
                         <div class="govuk-form-group">
                             <label class="govuk-label" for="volume">
                                 Volume
                             </label>
                             <div id="volume-hint" class="govuk-hint">
-                                Please enter a value between 0 and 100.
+                                Please enter a value<br>between 0 and 100.
                             </div>
                             <input class="govuk-input govuk-input--width-3 govuk-input--extra-letter-spacing"
                                 id="volume" name="volume" type="number" min="0" max="100" step="5" value="50"
                                 aria-describedby="volume-hint">
                         </div>
-                        <div class="govuk-form-group">
-                            <fieldset class="govuk-fieldset">
-                                <legend class="govuk-fieldset__legend">
-                                    Text-To-Speech (TTS)
-                                </legend>
-                                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-                                    <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="tts-ena" name="tts-ena"
-                                            type="checkbox">
-                                        <label class="govuk-label govuk-checkboxes__label" for="tts-ena">
-                                            Enable
-                                        </label>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-
                     </div>
-                    <div class="govuk-grid-column-one-half">
+                </div>
 
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full">
                         <div class="govuk-form-group">
                             <fieldset class="govuk-fieldset">
-                                <legend class="govuk-fieldset__legend">
-                                    Time Options
+
+                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                                    <h1 class="govuk-fieldset__heading">
+                                        Custom Ident Options
+                                    </h1>
                                 </legend>
-                                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-                                    <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="millis" name="millis"
-                                            type="checkbox">
-                                        <label class="govuk-label govuk-checkboxes__label" for="millis">
-                                            Milliseconds
+                                <div class="govuk-radios" data-module="govuk-radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="ident-none" name="ident-options"
+                                            type="radio" value="none">
+                                        <label class="govuk-label govuk-radios__label" for="ident-none">
+                                            No ident
                                         </label>
                                     </div>
-                                    <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="utc" name="utc" type="checkbox">
-                                        <label class="govuk-label govuk-checkboxes__label" for="utc">
-                                            UTC Hours
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="ident-tts" name="ident-options"
+                                            type="radio" value="tts">
+                                        <label class="govuk-label govuk-radios__label" for="ident-tts">
+                                            TTS
+                                        </label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="ident-file" name="ident-options"
+                                            type="radio" value="file">
+                                        <label class="govuk-label govuk-radios__label" for="ident-file">
+                                            File
                                         </label>
                                     </div>
                                 </div>
@@ -162,6 +179,96 @@
                         </div>
                     </div>
                 </div>
+                <div class="govuk-inset-text" style="margin-top: 0; margin-bottom: 20px;" id="tts-options">
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-full">
+                            <legend class="govuk-fieldset__legend">
+                                TTS
+                            </legend>
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="ttsIdentText">
+                                    TTS Text
+                                </label>
+                                <input class="govuk-input govuk-!-width-one-third" id="ttsIdentText" name="ttsIdentText"
+                                    type="text" spellcheck="false">
+                            </div>
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="ttsIdentVoice">
+                                    TTS Language
+                                </label>
+                                <select class="govuk-select" id="ttsIdentVoice" name="ttsIdentVoice">
+                                    <option value="en">English</option>
+                                    <option value="en-GB" selected>British</option>
+                                    <option value="fr">French</option>
+                                    <option value="de">German</option>
+                                    <option value="ru">Russian</option>
+                                    <option value="es">Spanish</option>
+                                </select>
+                            </div>
+
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="ttsIdentDelay">
+                                    TTS Volume
+                                </label>
+                                <input class="govuk-input govuk-input--width-3" id="ttsIdentDelay" name="ttsIdentDelay"
+                                    type="number" spellcheck="false" value="100">
+                            </div>
+                            <div class="govuk-form-group">
+                                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="identSeperate" name="identSeperate"
+                                            type="checkbox" value="identSeperate">
+                                        <label class="govuk-label govuk-checkboxes__label" for="identSeperate">
+                                            TTS Ident Seperate
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="govuk-form-group" style="margin-bottom: 15px;">
+                                <label class="govuk-label" for="ttsIdentDelay">
+                                    Ident delay
+                                </label>
+                                <div class="govuk-input__wrapper">
+                                    <input class="govuk-input govuk-input--width-4" id="ttsIdentDelay"
+                                        name="ttsIdentDelay" type="number" spellcheck="false" value="5000">
+                                    <div class="govuk-input__suffix" aria-hidden="true">ms</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="govuk-inset-text" style="margin-top: 0; margin-bottom: 20px;" id="tts-options">
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-full">
+                            <legend class="govuk-fieldset__legend">
+                                File
+                            </legend>
+                            <div class="govuk-form-group" style="margin-bottom: 10px;">
+                                <label class="govuk-label" for="fileIdent">
+                                    File
+                                </label>
+                                <input class="govuk-input govuk-!-width-one-third" id="fileIdent" name="fileIdent"
+                                    type="text" spellcheck="false">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="govuk-grid-row">
                     <div class="govuk-grid-column-one-half">
                         <div id="buttons" class="govuk-button-group ">
@@ -183,11 +290,12 @@
                 </div>
                 <div class="govuk-body">
                     <p class="govuk-body"><i>This will redirect you to <a href="https://tpg.v0.si/index.html"
-                                class="govuk-link">tpg.v0.si</a>. No tracking.</i></p>
+                                class="govuk-link">tpg.v0.si</a>. No
+                            tracking.</i></p>
                 </div>
     </div>
     </form>
-    
+
     </main>
 </div>
 
