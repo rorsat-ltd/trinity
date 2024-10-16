@@ -152,10 +152,10 @@
                                         Custom Ident Options
                                     </h1>
                                 </legend>
-                                <div class="govuk-radios" data-module="govuk-radios">
+                                <div class="govuk-radios" data-module="govuk-radios" id="ident-options">
                                     <div class="govuk-radios__item">
                                         <input class="govuk-radios__input" id="ident-none" name="ident-options"
-                                            type="radio" value="none">
+                                            type="radio" value="none" checked>
                                         <label class="govuk-label govuk-radios__label" for="ident-none">
                                             No ident
                                         </label>
@@ -336,6 +336,8 @@
             customSoundUrlInput.value = '';
         }
     }
+
+console.log(document.getElementById("ident-options").id);
 
 </script>
 {% endblock %}

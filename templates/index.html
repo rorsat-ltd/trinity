@@ -46,6 +46,18 @@
 
             <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
+            {% for page in section.pages %}
+    <div class="govuk-grid-column-one-third">
+        <a class="govuk-link" href="{{ page.permalink | safe }}">
+        <h2 class="govuk-heading-l">{{ page.title }}</h2>
+      </a>
+        <p class="govuk-body">{{ page.description }}</p>
+
+        </a>
+    </div>
+    {% endfor %}
+
+ <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
             <table class="govuk-table">
                 <caption class="govuk-table__caption govuk-table__caption--l">Useful links</caption>
