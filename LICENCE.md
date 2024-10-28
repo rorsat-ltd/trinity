@@ -1,5 +1,5 @@
 RORSAT Trinity - Web Tools for Engineers
-    Copyright (C) 2024 RORSAT Limitet
+    Copyright (C) 2024 RORSAT Limited
 
 
 
