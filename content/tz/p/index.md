@@ -1,4 +1,4 @@
 +++
-title = "Timezone Presets"
-template = "tz-presets.html"
+title = "Timezones"
+template = "timezones.html"
 +++
