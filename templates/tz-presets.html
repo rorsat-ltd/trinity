@@ -12,9 +12,9 @@
                             Custom
                         </a>
                     </li> -->
-                    <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
-                        <a class="govuk-service-navigation__link" href="/tz/p">
-                            <strong class="govuk-service-navigation__active-fallback">Custom</strong>
+                    <li class="govuk-service-navigation__item govuk-service-navigation__item">
+                        <a class="govuk-service-navigation__link" href="/tz/custom">
+                            <strong class="govuk-service-navigation__fallback">Custom</strong>
                         </a>
                     </li>
                     <!--<li class="govuk-service-navigation__item">
@@ -46,7 +46,6 @@
             </span>
         </p>
     </div>
-    <a href="/tz" class="govuk-back-link">Back</a>
 </div>
 
 
@@ -59,16 +58,13 @@
                 <p class="govuk-body">Use the buttons below to quickly calculate the time in a different timezone.</p>
             </div>
         </div>
-
-
-
         <div class="govuk-grid-row">
 
             <div class="govuk-form-group govuk-grid-column-one-half"> <!--source time-->
-                <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
+                <label class="govuk-label govuk-fieldset__legend--m">
                     Source time
                 </label>
-                <div id="src-time-hint" class="govuk-hint">
+                <div id=" src-time-hint" class="govuk-hint">
                     Defaults to system time.
                 </div>
                 <div class="govuk-input__wrapper">
@@ -124,109 +120,50 @@
             </div>
         </div>
         <div class="govuk-grid-row">
-            <div class="govuk-grid-column-three-quarters" style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--orange"
-                    data-module="govuk-button" onclick="lony()" id="btn-lony" title="London-New York&#013;Hotkey: a">
-                    LO-NY
-                </button>
+            <div class="govuk-grid-column-three-quarters"
+                style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                <div>
+                    <label class="govuk-label govuk-fieldset__legend--m" style=inherit>Source timezone</label>
+                    <div id="source-buttons">
+                        <button type="button" class="govuk-button govuk-button--secondary govuk-tag--orange"
+                            onclick="selectSource('Europe/London', this)">London</button>
+                        <button type="button" class="govuk-button govuk-button--secondary govuk-tag--yellow"
+                            onclick="selectSource('America/New_York', this)">New York</button>
+                        <button type="button" class="govuk-button govuk-button--secondary govuk-tag--purple"
+                            onclick="selectSource('America/Los_Angeles', this)">Los Angeles</button>
+                        <button type="button" class="govuk-button govuk-button--secondary govuk-tag--blue"
+                            onclick="selectSource('CET', this)">Central Europe</button>
+                        <button type="button" class="govuk-button govuk-button--secondary govuk-tag--green"
+                            onclick="selectSource('UTC', this)">UTC</button>
+                    </div>
+                </div>
+                <div>
+                    <label class="govuk-label govuk-fieldset__legend--m">Destination timezone</label>
+                    <div id="destination-buttons">
+                        <button type="button" class="govuk-button govuk-button--secondary govuk-tag--orange"
+                            onclick="selectDestination('Europe/London', this)">London</button>
+                        <button type="button" class="govuk-button govuk-button--secondary govuk-tag--yellow"
+                            onclick="selectDestination('America/New_York', this)">New York</button>
+                        <button type="button" class="govuk-button govuk-button--secondary govuk-tag--purple"
+                            onclick="selectDestination('America/Los_Angeles', this)">Los Angeles</button>
+                        <button type="button" class="govuk-button govuk-button--secondary govuk-tag--blue"
+                            onclick="selectDestination('CET', this)">Central Europe</button>
 
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--orange"
-                    data-module="govuk-button" onclick="nylo()" id="btn-nylo" title="New York-London&#013;Hotkey: s">
-                    NY-LO
-                </button>
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--orange"
-                    data-module="govuk-button" onclick="utcny()" id="btn-utcny" title="UTC-New York">
-                    UTC-NY
-                </button>
-
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--blue"
-                    data-module="govuk-button" onclick="lola()" id="btn-lola" title="London-Los Angeles&#013;Hotkey: d">
-                    LO-LA
-                </button>
-
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--blue"
-                    data-module="govuk-button" onclick="lalo()" id="btn-lalo" title="Los Angeles-London&#013;Hotkey: f">
-                    LA-LO
-                </button>
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--blue"
-                    data-module="govuk-button" onclick="utcla()" id="btn-utcla" title="UTC-Los Angeles">
-                    UTC-LA
-                </button>
-
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--pink"
-                    data-module="govuk-button" onclick="nyla()" id="btn-nyla" title="New York-Los Angeles&#013;Hotkey: g">
-                    NY-LA
-                </button>
-
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--pink"
-                    data-module="govuk-button" onclick="lany()" id="btn-lany" title="Los Angeles-New York&#013;Hotkey: h">
-                    LA-NY
-                </button>
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--turquoise"
-                    data-module="govuk-button" onclick="lode()" id="btn-lode" title="London-Germany&#013;CET/CEST&#013;Hotkey: j">
-                    LO-DE
-                </button>
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--turquoise"
-                    data-module="govuk-button" onclick="delo()" id="btn-delo" title="Germany-London&#013;CET/CEST&#013;Hotkey: k">
-                    DE-LO
-                </button>
+                        <button type="button" class="govuk-button govuk-button--secondary govuk-tag--green"
+                            onclick="selectDestination('UTC', this)">UTC</button>
+                    </div>
+                </div>
             </div>
             <div class="govuk-grid-column-one-quarter" style="display: flex; justify-content: right;">
-                <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button"
-                    onclick="clr()" id="btn-reset" title="Hotkey: r">
+                <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button"
+                    onclick="clr()" id="btn-reset">
                     Reset
                 </button>
             </div>
         </div>
-        <!--
-        <div class="govuk-grid-row">
-            <div class="govuk-grid-column-three-quarters" style="display: flex; justify-content: center; gap: 5px;">
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
-                    data-module="govuk-button" onclick="add1hr()" id="btn-add1h">
-                    +1h
-                </button>
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
-                    data-module="govuk-button" onclick="add30m()" id="btn-add30m">
-                    +30m
-                </button>
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
-                    data-module="govuk-button" onclick="add15m()" id="btn-add15m">
-                    +15m
-                </button>
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
-                    data-module="govuk-button" onclick="add5m()" id="btn-add5m">
-                    +5m
-                </button>
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
-                    data-module="govuk-button" onclick="min5m()" id="btn-min5m">
-                    -5m
-                </button>
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
-                    data-module="govuk-button" onclick="min15m()" id="btn-min15m">
-                    -15m
-                </button>
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
-                    data-module="govuk-button" onclick="min30m()" id="btn-min30m">
-                    -30m
-                </button>
-                <button type="submit" class="govuk-button govuk-button--secondary govuk-tag--purple"
-                    data-module="govuk-button" onclick="min1h()" id="btn-min1h">
-                    -1h
-                </button>
-            </div>
-        </div>
-    -->
-        <div class="govuk-grid-row">
-            <div class="govuk-form-group govuk-grid-column-one-quarter"> <!-- dest time -->
-                <label class="govuk-label govuk-fieldset__legend--m" for="preset">
-                    Preset
-                </label>
-                <div class="govuk-input__wrapper">
-                    <input class="govuk-input govuk-input--width-4" id="preset" name="preset" type="text"
-                        spellcheck="false" readonly="true" disabled="true">
 
-                </div>
-            </div>
+
+        <div class="govuk-grid-row">
             <div class="govuk-form-group govuk-grid-column-one-quarter"> <!-- dest time -->
                 <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
                     Destination
@@ -235,55 +172,36 @@
                     <input
                         class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
                         id="dest-time" name="dest-time" type="text" spellcheck="false" readonly="true" disabled="true">
-                        <div class="govuk-input__suffix" id="dest-suff" aria-hidden="true"></div>
+                    <div class="govuk-input__suffix" id="dest-suff" aria-hidden="true"></div>
 
                 </div>
             </div>
+
+            <div class="govuk-form-group govuk-grid-column-one-quarter"> <!-- dest time -->
+                <label class="govuk-label govuk-fieldset__legend" for="preset">
+                    Preset
+                </label>
+                <div class="govuk-input__wrapper">
+                    <input class="govuk-input govuk-input--width-4" id="preset" name="preset" type="text"
+                        spellcheck="false" readonly="true" disabled="true" style="margin-top: 10px;">
+
+                </div>
+            </div>
+
             <div class="govuk-form-group govuk-grid-column-one-quarter"> <!--UTC Time-->
-                <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
+                <label class="govuk-label govuk-fieldset__legend" for="width-2">
                     UTC
                 </label>
                 <div class="govuk-input__wrapper">
-
                     <input
                         class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
-                        id="utc-time" name="utc-time" type="text" spellcheck="false" readonly="true" disabled="true">
+                        id="utc-time" name="utc-time" type="text" spellcheck="false" readonly="true" disabled="true"
+                        style="margin-top: 10px;">
 
                 </div>
-            </div>
 
-            <div class="govuk-form-group govuk-grid-column-one-quarter" title="This is UTC, minus 3 mins">
-                <!--Rec Time-->
-                <label class="govuk-label govuk-fieldset__legend--m" for="width-2">
-                    Record at
-                </label>
-                <div class="govuk-input__wrapper">
-
-                    <input
-                        class="govuk-input govuk-input--width-4 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
-                        id="rec-time" name="rec-time" type="text" spellcheck="false" readonly="true" disabled="true">
-
-                </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </main>
 </div>
 
@@ -311,21 +229,20 @@
     const lo = "Europe/London";
     const la = "America/Los_Angeles";
     const de = "Europe/Berlin";
+    const cet = "CET"
 
 
-
-    function lony() { //london new york
-        console.log("LONY")
+    function convertTz(srcTz, destTz, presetVal, destSuff, destSuffTitle) {
         let srcTime = document.getElementById('src-time').value;
         let srcDateDay = document.getElementById('src-date-day').value;
         let srcDateMonth = document.getElementById('src-date-month').value;
         let srcDateYear = document.getElementById('src-date-year').value;
-        let srcTz = lo;
-        let destTz = ny;
 
-        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
+        let parsed = moment.tz(
+            `${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`,
+            srcTz
+        );
         console.log("parsing input", parsed.format());
-
 
         let destTime = parsed.clone().tz(destTz).format("HH:mm");
         let utcTime = parsed.clone().utc().format("HH:mm");
@@ -334,257 +251,38 @@
 
         document.getElementById('dest-time').value = destTime;
         document.getElementById('utc-time').value = utcTime;
-        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
-        document.getElementById('rec-time').value = recTime;
-        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
-        document.getElementById('preset').value = "LONY";
-        document.getElementById('dest-suff').innerHTML = "NY";
-        document.getElementById('dest-suff').title = destTz;
+        document.getElementById('preset').value = presetVal;
+        document.getElementById('dest-suff').innerHTML = destSuff;
+        document.getElementById('dest-suff').title = destSuffTitle;
     }
 
-    function nylo() { //new york london
-        console.log("NYLO")
-        let srcTime = document.getElementById('src-time').value;
-        let srcDateDay = document.getElementById('src-date-day').value;
-        let srcDateMonth = document.getElementById('src-date-month').value;
-        let srcDateYear = document.getElementById('src-date-year').value;
-        let srcTz = ny;
-        let destTz = lo;
+    // Now, each function is just a one-liner:
+    function cetlo() { convertTz(de, lo, "CETLO", "LO", lo); }
+    function cetny() { convertTz(cet, ny, "CETNY", "NY", ny); }
+    function cetla() { convertTz(cet, la, "CETLA", "LA", la); }
+    function cetutc() { convertTz(cet, utc, "CETUTC", "UTC", utc); }
 
-        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
-        console.log("parsing input", parsed.format());
+    function lalo() { convertTz(la, lo, "LALO", "LO", lo); }
+    function lany() { convertTz(la, ny, "LANY", "NY", ny); }
+    function lacet() { convertTz(la, cet, "LACET", "CET", cet); }
+    function lautc() { convertTz(la, utc, "LAUTC", "UTC", utc); }
 
+    function lola() { convertTz(lo, la, "LOLA", "LA", la); }
+    function locet() { convertTz(lo, cet, "LODE", "DE", cet); }
+    function lony() { convertTz(lo, ny, "LONY", "NY", ny); }
+    function loutc() { convertTz(lo, utc, "LOUTC", "UTC", utc); }
 
-        let destTime = parsed.clone().tz(destTz).format("HH:mm");
-        let utcTime = parsed.clone().utc().format("HH:mm");
-        console.log("destTime", destTime);
-        console.log("utcTime", utcTime);
+    function nycet() { convertTz(ny, cet, "NYCET", "CET", cet); }
+    function nyla() { convertTz(ny, la, "NYLA", "LA", la); }
+    function nylo() { convertTz(ny, lo, "NYLO", "LO", lo); }
+    function nyutc() { convertTz(ny, utc, "NYUTC", "UTC", utc); }
 
-        document.getElementById('dest-time').value = destTime;
-        document.getElementById('utc-time').value = utcTime;
-        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
-        document.getElementById('rec-time').value = recTime;
-        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
-        document.getElementById('preset').value = "NYLO";
-        document.getElementById('dest-suff').innerHTML = "LO";
-        document.getElementById('dest-suff').title = destTz;
-    }
-
-    function lola() { //london LA
-        console.log("LOLA")
-        let srcTime = document.getElementById('src-time').value;
-        let srcDateDay = document.getElementById('src-date-day').value;
-        let srcDateMonth = document.getElementById('src-date-month').value;
-        let srcDateYear = document.getElementById('src-date-year').value;
-        let srcTz = lo;
-        let destTz = la;
-
-        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
-        console.log("parsing input", parsed.format());
+    function utcny() { convertTz(utc, ny, "UTCNY", "NY", ny); }
+    function utcla() { convertTz(utc, la, "UTCLA", "LA", la); }
+    function utclo() { convertTz(utc, lo, "UTCLO", "LO", lo); }
+    function utccet() { convertTz(utc, cet, "UTCCET", "CET", cet); }
 
 
-        let destTime = parsed.clone().tz(destTz).format("HH:mm");
-        let utcTime = parsed.clone().utc().format("HH:mm");
-        console.log("destTime", destTime);
-        console.log("utcTime", utcTime);
-
-        document.getElementById('dest-time').value = destTime;
-        document.getElementById('utc-time').value = utcTime;
-        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
-        document.getElementById('rec-time').value = recTime;
-        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
-        document.getElementById('preset').value = "LOLA";
-        document.getElementById('dest-suff').innerHTML = "LA";
-        document.getElementById('dest-suff').title = destTz;
-    }
-
-    function lalo() { // LA London
-        console.log("LALO")
-        let srcTime = document.getElementById('src-time').value;
-        let srcDateDay = document.getElementById('src-date-day').value;
-        let srcDateMonth = document.getElementById('src-date-month').value;
-        let srcDateYear = document.getElementById('src-date-year').value;
-        let srcTz = la;
-        let destTz = lo;
-
-        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
-        console.log("parsing input", parsed.format());
-
-
-        let destTime = parsed.clone().tz(destTz).format("HH:mm");
-        let utcTime = parsed.clone().utc().format("HH:mm");
-        console.log("destTime", destTime);
-        console.log("utcTime", utcTime);
-
-        document.getElementById('dest-time').value = destTime;
-        document.getElementById('utc-time').value = utcTime;
-        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
-        document.getElementById('rec-time').value = recTime;
-        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
-        document.getElementById('preset').value = "LALO";
-        document.getElementById('dest-suff').innerHTML = "LO";
-        document.getElementById('dest-suff').title = destTz;
-    }
-
-    function nyla() { // New York LA
-        console.log("NYLA")
-        let srcTime = document.getElementById('src-time').value;
-        let srcDateDay = document.getElementById('src-date-day').value;
-        let srcDateMonth = document.getElementById('src-date-month').value;
-        let srcDateYear = document.getElementById('src-date-year').value;
-        let srcTz = ny;
-        let destTz = la;
-
-        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
-        console.log("parsing input", parsed.format());
-
-
-        let destTime = parsed.clone().tz(destTz).format("HH:mm");
-        let utcTime = parsed.clone().utc().format("HH:mm");
-        console.log("destTime", destTime);
-        console.log("utcTime", utcTime);
-
-        document.getElementById('dest-time').value = destTime;
-        document.getElementById('utc-time').value = utcTime;
-        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
-        document.getElementById('rec-time').value = recTime;
-        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
-        document.getElementById('preset').value = "NYLA";
-        document.getElementById('dest-suff').innerHTML = "LA";
-        document.getElementById('dest-suff').title = destTz;
-    }
-
-    function lany() { // LA New York
-        console.log("LANY")
-        let srcTime = document.getElementById('src-time').value;
-        let srcDateDay = document.getElementById('src-date-day').value;
-        let srcDateMonth = document.getElementById('src-date-month').value;
-        let srcDateYear = document.getElementById('src-date-year').value;
-        let srcTz = la;
-        let destTz = ny;
-
-        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
-        console.log("parsing input", parsed.format());
-
-
-        let destTime = parsed.clone().tz(destTz).format("HH:mm");
-        let utcTime = parsed.clone().utc().format("HH:mm");
-        console.log("destTime", destTime);
-        console.log("utcTime", utcTime);
-
-        document.getElementById('dest-time').value = destTime;
-        document.getElementById('utc-time').value = utcTime;
-        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
-        document.getElementById('rec-time').value = recTime;
-        console.log("rec-time", parsed.clone().utc().subtract(3, 'minutes').format("HH:mm"));
-        document.getElementById('preset').value = "LANY";
-        document.getElementById('dest-suff').innerHTML = "NY";
-        document.getElementById('dest-suff').title = destTz;
-    }
-
-    function lode() { // London Berlin
-        console.log("LODE")
-        let srcTime = document.getElementById('src-time').value;
-        let srcDateDay = document.getElementById('src-date-day').value;
-        let srcDateMonth = document.getElementById('src-date-month').value;
-        let srcDateYear = document.getElementById('src-date-year').value;
-        let srcTz = lo;
-        let destTz = de;
-
-        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
-        console.log("parsing input", parsed.format());
-
-        let destTime = parsed.clone().tz(destTz).format("HH:mm");
-        let utcTime = parsed.clone().utc().format("HH:mm");
-        console.log("destTime", destTime);
-        console.log("utcTime", utcTime);
-        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
-        document.getElementById('rec-time').value = recTime;
-        console.log("rec-time", recTime);
-        document.getElementById('dest-time').value = destTime;
-        document.getElementById('utc-time').value = utcTime;
-        document.getElementById('preset').value = "LODE";
-        document.getElementById('dest-suff').innerHTML = "DE";
-        document.getElementById('dest-suff').title = destTz;
-    }
-
-    function delo() { // Berlin London
-        console.log("DELO")
-        let srcTime = document.getElementById('src-time').value;
-        let srcDateDay = document.getElementById('src-date-day').value;
-        let srcDateMonth = document.getElementById('src-date-month').value;
-        let srcDateYear = document.getElementById('src-date-year').value;
-        let srcTz = de;
-        let destTz = lo;
-
-        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
-        console.log("parsing input", parsed.format());
-
-        let destTime = parsed.clone().tz(destTz).format("HH:mm");
-        let utcTime = parsed.clone().utc().format("HH:mm");
-        console.log("destTime", destTime);
-        console.log("utcTime", utcTime);
-        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
-        document.getElementById('rec-time').value = recTime;
-        console.log("rec-time", recTime);
-        document.getElementById('dest-time').value = destTime;
-        document.getElementById('utc-time').value = utcTime;
-        document.getElementById('preset').value = "DELO";
-        document.getElementById('dest-suff').innerHTML = "LO";
-        document.getElementById('dest-suff').title = destTz;
-    }
-
- function utcny() { // UTC to New York
-        console.log("UTCNY")
-        let srcTime = document.getElementById('src-time').value;
-        let srcDateDay = document.getElementById('src-date-day').value;
-        let srcDateMonth = document.getElementById('src-date-month').value;
-        let srcDateYear = document.getElementById('src-date-year').value;
-        let srcTz = utc;
-        let destTz = ny;
-
-        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
-        console.log("parsing input", parsed.format());
-
-        let destTime = parsed.clone().tz(destTz).format("HH:mm");
-        let utcTime = parsed.clone().utc().format("HH:mm");
-        console.log("destTime", destTime);
-        console.log("utcTime", utcTime);
-        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
-        document.getElementById('rec-time').value = recTime;
-        console.log("rec-time", recTime);
-        document.getElementById('dest-time').value = destTime;
-        document.getElementById('utc-time').value = utcTime;
-        document.getElementById('preset').value = "UTCNY";
-        document.getElementById('dest-suff').innerHTML = "NY";
-        document.getElementById('dest-suff').title = destTz;
-    }
-
-     function utcla() { // UTC to LA
-        console.log("UTCLA")
-        let srcTime = document.getElementById('src-time').value;
-        let srcDateDay = document.getElementById('src-date-day').value;
-        let srcDateMonth = document.getElementById('src-date-month').value;
-        let srcDateYear = document.getElementById('src-date-year').value;
-        let srcTz = utc;
-        let destTz = la;
-
-        let parsed = moment.tz(`${srcDateYear}-${srcDateMonth}-${srcDateDay} ${srcTime.match(/\d{2}/g).join(":")}`, srcTz);
-        console.log("parsing input", parsed.format());
-
-        let destTime = parsed.clone().tz(destTz).format("HH:mm");
-        let utcTime = parsed.clone().utc().format("HH:mm");
-        console.log("destTime", destTime);
-        console.log("utcTime", utcTime);
-        let recTime = parsed.clone().utc().subtract(3, 'minutes').format("HH:mm");
-        document.getElementById('rec-time').value = recTime;
-        console.log("rec-time", recTime);
-        document.getElementById('dest-time').value = destTime;
-        document.getElementById('utc-time').value = utcTime;
-        document.getElementById('preset').value = "UTCLA";
-        document.getElementById('dest-suff').innerHTML = "LA";
-        document.getElementById('dest-suff').title = destTz;
-    }
 
     function clr() {
         document.getElementById('src-time').value = moment().format("HHmm");
@@ -593,64 +291,52 @@
         document.getElementById('src-date-year').value = moment().format("YYYY");
         document.getElementById('dest-time').value = "";
         document.getElementById('utc-time').value = "";
-        document.getElementById('rec-time').value = "";
+        //  document.getElementById('rec-time').value = "";
         document.getElementById('preset').value = "";
         document.getElementById('dest-suff').innerHTML = "tz";
         console.log("cleared");
     }
 
-    /*
-    function add1hr() {
-        let srcTime = document.getElementById('src-time').value;
-        let destTime = document.getElementById('dest-time').value.format("HHmm");
-        let utcTime = document.getElementById('utc-time').value.format("HHmm");
-        let recTime = document.getElementById('rec-time').value.format("HHmm");
-        let parsed = moment(`${srcTime.match(/\d{2}/g).join(":")}`, "HH:mm");
-        let newTime = parsed.add(1, 'hour').format("HHmm");
-        let newDest = destTime.add(1, 'hour').format("HHmm");
-        let newUtc = utcTime.add(1, 'hour').format("HHmm");
-        let newRec = recTime.add(1, 'hour').format("HHmm");
-        document.getElementById('src-time').value = newTime;
-        
-        document.getElementById('dest-time').value = newDest;
-        document.getElementById('utc-time').value = newUtc;
-        document.getElementById('rec-time').value = newRec;
-        console.log("added 1 hour", newTime);
-    }
-*/
-
     addEventListener("keypress", function (event) {
-        if (event.key === "a") {
-            document.getElementById("btn-lony").click();
-        }
-        if (event.key === "s") {
-            document.getElementById("btn-nylo").click();
-        }
-        if (event.key === "d") {
-            document.getElementById("btn-lola").click();
-        }
-        if (event.key === "f") {
-            document.getElementById("btn-lalo").click();
-        }
-        if (event.key === "g") {
-            document.getElementById("btn-nyla").click();
-        }
-        if (event.key === "h") {
-            document.getElementById("btn-lany").click();
-        }
-        if (event.key === "j") {
-            document.getElementById("btn-lode").click();
-        }
-        if (event.key === "k") {
-            document.getElementById("btn-delo").click();
-        }
-
-
         //reset key
         if (event.key === "r") {
             document.getElementById("btn-reset").click();
         }
     });
+
+    let selectedSource = null;
+    let selectedDestination = null;
+    let selectedSourceBtn = null;
+    let selectedDestinationBtn = null;
+
+    function selectSource(tz, btn) {
+        selectedSource = tz;
+        if (selectedSourceBtn) selectedSourceBtn.classList.remove('govuk-button--selected');
+        btn.classList.add('govuk-button:focus');
+        selectedSourceBtn = btn;
+    }
+
+    function selectDestination(tz, btn) {
+        selectedDestination = tz;
+        if (selectedDestinationBtn) selectedDestinationBtn.classList.remove('govuk-button--selected');
+        btn.classList.add('govuk-button:focus');
+        selectedDestinationBtn = btn;
+        // Only convert if both are selected and not the same
+        if (selectedSource && selectedDestination && selectedSource !== selectedDestination) {
+            let presetVal = getShortTz(selectedSource) + '-' + getShortTz(selectedDestination);
+            let destSuff = getShortTz(selectedDestination);
+            convertTz(selectedSource, selectedDestination, presetVal, destSuff, selectedDestination);
+        }
+    }
+
+    function getShortTz(tz) {
+        if (tz === "Europe/London") return "LO";
+        if (tz === "America/New_York") return "NY";
+        if (tz === "Europe/Berlin" || tz === "CET") return "CET";
+        if (tz === "America/Los_Angeles") return "LA";
+        if (tz === "UTC") return "UTC";
+        return tz;
+    }
 
 </script>
 {% endblock %}

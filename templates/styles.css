@@ -53,3 +53,8 @@ body {
 .black-bar .text {
   line-height: 1.2;
 }
+
+.govuk-button--selected {
+    box-shadow: 0 0 0 4px #1d70b8;
+    border-color: #1d70b8;
+}
