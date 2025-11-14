@@ -33,6 +33,8 @@ body {
 .red { background-color: #ff0000; }
 .blue { background-color: #0000ff; }
 
+.orange-border { border-color: #f47738;}
+
 .black-bar {
   position: absolute;
   top: 40%;
