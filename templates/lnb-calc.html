@@ -1,190 +1,235 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="govuk-width-container app-width-container">
-    <div class="govuk-phase-banner">
-        
-        <p class="govuk-phase-banner__content">
-            <strong class="govuk-tag govuk-phase-banner__content__tag govuk-phase-banner-tag-green">
-                Working
-              </strong>
+  <div class="govuk-phase-banner">
+    <p class="govuk-phase-banner__content">
+      <strong
+        class="govuk-tag govuk-phase-banner__content__tag govuk-phase-banner-tag-green"
+      >
+        Working
+      </strong>
 
+      <span class="govuk-phase-banner__text">
+        This is a new service – your
+        <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      </span>
+    </p>
+  </div>
 
-            <span class="govuk-phase-banner__text">
-                This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-            </span>
-        </p>
-    </div>
-
-
-
-
-<div class="govuk-width-container">
+  <div class="govuk-width-container">
     <main class="govuk-main-wrapper">
-        <h1 class="govuk-heading-xl"><span title="Low-Noise Block downconverter">LNB</span> Band Calculator</h1>
+      <h1 class="govuk-heading-xl">
+        <span title="Low-Noise Block downconverter">LNB</span> Band Calculator
+      </h1>
 
-         <!-- input boxes - Frequency -->
+      <!-- input boxes - Frequency -->
 
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="frequency"> Downlink Frequency </label>
+        <div class="govuk-input__wrapper">
+          <input
+            type="text"
+            id="frequency"
+            class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing"
+            spellcheck="false"
+            inputmode="numeric"
+          />
+          <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
+        </div>
+      </div>
 
-         <div class="govuk-form-group">
-            <label class="govuk-label" for="frequency">
-                Downlink Frequency
-            </label>
-            <div class="govuk-input__wrapper">
-                <input type="text" id="frequency" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing" spellcheck="false"
-                    inputmode="numeric">
-                <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
+      <!-- Radio buttons - Polarity -->
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" id="polairty">
+          <legend
+            class="govuk-fieldset__legend govuk-fieldset__legend--m"
+            id="polarity"
+          >
+            <h2 class="govuk-fieldset__heading">Polarity</h2>
+          </legend>
+          <div
+            class="govuk-radios govuk-radios--inline"
+            data-module="govuk-radios"
+          >
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                type="radio"
+                id="h"
+                name="polarity"
+                value="H"
+                checked
+              />
+              <label class="govuk-label govuk-radios__label" for="h"
+                >Horizontal (H) / X</label
+              >
             </div>
-        </div>
 
-        <!-- Radio buttons - Polarity -->
-
-        <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" id="polairty">
-                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m" id="polarity">
-                    <h2 class="govuk-fieldset__heading">
-                        Polarity
-                    </h2>
-                </legend>
-                <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" type="radio" id="h" name="polarity" value="H" checked>
-                        <label class="govuk-label govuk-radios__label" for="h">Horizontal (H) / X</label>
-                    </div>
-
-                    <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" type="radio" id="v" name="polarity" value="V">
-                        <label class="govuk-label govuk-radios__label" for="v">Vertical (V) / Y</label>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-
-         <!-- Buttons  -->
-         <div class="govuk-button-group">
-            <button type="submit" class="govuk-button" data-module="govuk-button" onclick="lnb_calc_freq()" id="btn-go">
-                Go! Do maths for me!
-            </button>
-
-
-            <button id="btn-clear" type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button"
-                onclick="clr()">
-                Clear
-            </button>
-
-        </div>
-
-        <!-- Result: Result -->
-
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="result-box">
-                Result
-            </label>
-            <div class="govuk-input__wrapper">
-                <input type="text" id="result-box" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing govuk-!-font-weight-bold" spellcheck="false"
-                    readonly="true" disabled="true">
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                type="radio"
+                id="v"
+                name="polarity"
+                value="V"
+              />
+              <label class="govuk-label govuk-radios__label" for="v"
+                >Vertical (V) / Y</label
+              >
             </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Buttons  -->
+      <div class="govuk-button-group">
+        <button
+          type="submit"
+          class="govuk-button"
+          data-module="govuk-button"
+          onclick="lnb_calc_freq()"
+          id="btn-go"
+        >
+          Go! Do maths for me!
+        </button>
+
+        <button
+          id="btn-clear"
+          type="submit"
+          class="govuk-button govuk-button--secondary"
+          data-module="govuk-button"
+          onclick="clr()"
+        >
+          Clear
+        </button>
+      </div>
+
+      <!-- Result: Result -->
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="result-box"> Result </label>
+        <div class="govuk-input__wrapper">
+          <input
+            type="text"
+            id="result-box"
+            class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
+            spellcheck="false"
+            readonly="true"
+            disabled="true"
+          />
         </div>
-        <!-- Result: Frequency -->
+      </div>
+      <!-- Result: Frequency -->
 
-        <div class="govuk-form-group">
-            <label class="govuk-label" for="freq-res">
-                Frequency
-            </label>
-            <div class="govuk-input__wrapper">
-                <input type="text" id="freq-res" class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing govuk-!-font-weight-bold" spellcheck="false"
-                    inputmode="numeric" readonly="true" disabled="true">
-                <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
-            </div>
+      <div class="govuk-form-group" id="freq-out">
+        <label class="govuk-label" for="freq-res"> Frequency </label>
+        <p id="freq_warn" class="govuk-error-message">
+          Frequency is at the top end of the range. Some decoders may throw a wobbly.
+        </p>
+        <div class="govuk-input__wrapper">
+          <input
+            type="text"
+            id="freq-res"
+            class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing govuk-!-font-weight-bold govuk-input--error"
+            spellcheck="false"
+            inputmode="numeric"
+            readonly="true"
+            disabled="true"
+          />
+          <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
         </div>
-
-
-        
+      </div>
     </main>
-</div>
+  </div>
 
-<script>
+  <script>
+    function lnb_calc_freq() {
+      let f = Number(document.getElementById("frequency").value); // frequency input
+      const lnb_hi = 10600; // top of LNB range (default)
+      const lnb_lo = 9750; // bottom of LNB range (default)
+      let hi_calc = f - lnb_hi;
+      let lo_calc = f - lnb_lo;
+      const freq_band_hi = 2000; // top of band (default)
+      const freq_band_hihi = 2200; //  verrrrry top of band
+      const freq_band_lo = 950; // bottom of band (default)
+      let result = "";
+      let freq_result = 9999; // default value
 
+      console.log("hi-calc is", hi_calc);
+      console.log("low-calc is", lo_calc);
+      // Boolean values
+      let use_hi = false;
+      let use_lo = false;
 
-function lnb_calc_freq() {
-    let f = Number(document.getElementById("frequency").value); // frequency input
-    const lnb_hi = 10600; // top of LNB range (default)
-    const lnb_lo = 9750;  // bottom of LNB range (default)
-    let hi_calc = f - lnb_hi;
-    let lo_calc = f - lnb_lo;
-    const freq_band_hi = 2000; // top of band (default)
-    const freq_band_lo = 950;  // bottom of band (default)
-    let result = "";
-    let freq_result = 9999 // default value
+      // Getting radio button values
+      let polarity = document.querySelector('input[name="polarity"]:checked');
 
-    // Boolean values
-    let use_hi = false;
-    let use_lo = false;
-
-    // Getting radio button values
-    let polarity = document.querySelector('input[name="polarity"]:checked');
-
-
-    if (hi_calc >= freq_band_lo && hi_calc <= freq_band_hi) {
+      if (hi_calc >= freq_band_lo && hi_calc <= freq_band_hi) {
         use_hi = true;
-        freq_result = hi_calc
-    }
-    if (lo_calc >= freq_band_lo && lo_calc <= freq_band_hi) {
+        freq_result = hi_calc;
+        console.log("use hi");
+      }
+      if (lo_calc >= freq_band_lo && lo_calc <= freq_band_hi) {
         use_lo = true;
-        freq_result = lo_calc
-    }
+        freq_result = lo_calc;
+        console.log("use lo");
+      }
+      if (hi_calc >= freq_band_lo && hi_calc <= freq_band_hihi) {
+        use_hi = true;
+        freq_result = hi_calc;
+        document.querySelector('#freq-out').classList.add('govuk-form-group--error','orange-border')
+        console.log("use hi hi - show warn");
+      }
 
-    if (!use_hi && use_lo) {
+      if (!use_hi && use_lo) {
         result = "Lo";
-    } else if (use_hi && !use_lo) {
+      } else if (use_hi && !use_lo) {
         result = "Hi";
-    } else if (!use_hi && !use_lo) {
+      } else if (!use_hi && !use_lo) {
         result = "Out of Range";
-    } else if (use_hi && use_lo) {
+      } else if (use_hi && use_lo) {
         result = "Overlap, both in range";
-    } else {
-        console.warn("Error in calculation; unknown state of use_hi and use_lo");
+      } else {
+        console.warn(
+          "Error in calculation; unknown state of use_hi and use_lo"
+        );
         result = "error";
-    }
+      }
 
-    // Displaying the result with polarity
-    if (polarity && (result === "Hi" || result === "Lo")) {
+      // Displaying the result with polarity
+      if (polarity && (result === "Hi" || result === "Lo")) {
         result = polarity.value + result;
+      }
+
+      document.getElementById("result-box").value = result;
+      document.getElementById("freq-res").value = freq_result;
     }
 
-    document.getElementById("result-box").value = result;
-    document.getElementById("freq-res").value = freq_result;
+    function clr() {
+      // Clear the frequency input field
+      document.getElementById("frequency").value = "";
 
+      // Clear the result box
+      document.getElementById("result-box").value = "";
 
-}
+      // Clear the frequency result
+      document.getElementById("freq-res").value = "";
 
+      // clear red error styles
+      document.querySelector('#freq-out').classList.remove('govuk-form-group--error')
 
-
-function clr() {
-    // Clear the frequency input field
-    document.getElementById("frequency").value = "";
-
-    // Clear the result box
-    document.getElementById("result-box").value = "";
-
-    // Clear the frequency result
-    document.getElementById("freq-res").value = "";
-
-    // Clear the polarity selection if it exists
-    if (document.getElementById("polarity")) {
+      // Clear the polarity selection if it exists
+      if (document.getElementById("polarity")) {
         document.getElementById("polarity").value = "";
+      }
     }
-}
 
-
-addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            document.getElementById("btn-go").click();
-        }
+    addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        document.getElementById("btn-go").click();
+      }
     });
+  </script>
 
-
-
-</script>
-
-{% endblock %}
+  {% endblock %}
+</div>
