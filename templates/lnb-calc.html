@@ -81,29 +81,6 @@
         </fieldset>
       </div>
 
-      <!-- Buttons  -->
-      <div class="govuk-button-group">
-        <button
-          type="submit"
-          class="govuk-button"
-          data-module="govuk-button"
-          onclick="update_thingies()"
-          id="btn-go"
-        >
-          Go! Do maths for me!
-        </button>
-
-        <button
-          id="btn-clear"
-          type="submit"
-          class="govuk-button govuk-button--secondary"
-          data-module="govuk-button"
-          onclick="clr()"
-        >
-          Clear
-        </button>
-      </div>
-
       <!-- Result: Result -->
 
       <div class="govuk-form-group">
@@ -122,7 +99,7 @@
       <!-- Result: Frequency -->
 
       <div class="govuk-form-group" id="freq-out">
-        <label class="govuk-label" for="freq-res"> Frequency </label>
+        <label class="govuk-label" for="freq-res"> Post-LNB Frequency</label>
         <p id="freq-warn" class="govuk-error-message" style="display: none">
           error text goes here
         </p>
@@ -156,7 +133,7 @@
       const freq_band_lo = 950;
 
       let result = "";
-      let freq_result = 9999;
+      let freq_result = 999999;
       let error_severity = null;
       let error_message = "";
 
@@ -209,9 +186,6 @@
       const polarity = $('input[name="polarity"]:checked').value;
       const res = do_maths_things(f, polarity);
 
-      $("#result-box").value = res.result_txt;
-      $("#freq-res").value = res.result_freq;
-
       // Clear previous styling
       $("#freq-warn").setAttribute("style", "display:none");
       $("#freq-res").classList.remove("govuk-input--error", "orange-border");
@@ -220,8 +194,13 @@
         "govuk-form-group--error",
         "orange-border"
       );
+      $("#result-box").value = "";
+      $("#freq-res").value = "";
 
       if (f < 9999) return;
+
+      $("#result-box").value = res.result_txt;
+      $("#freq-res").value = res.result_freq;
 
       if (res.error_severity) {
         $("#freq-warn").textContent = res.error_message;
@@ -239,6 +218,7 @@
     }
 
     $("#frequency").addEventListener("change", update_thingies);
+    $("#frequency").addEventListener("input", update_thingies);
     $("#h").addEventListener("change", update_thingies);
     $("#v").addEventListener("change", update_thingies);
 
