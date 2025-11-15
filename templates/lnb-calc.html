@@ -87,7 +87,7 @@
           type="submit"
           class="govuk-button"
           data-module="govuk-button"
-          onclick="lnb_calc_freq()"
+          onclick="update_thingies()"
           id="btn-go"
         >
           Go! Do maths for me!
@@ -146,182 +146,101 @@
     function $(selector) {
       return document.querySelector(selector);
     }
-    function do_maths_things(a_number, polarity) {
-      const lnb_hi = 10600; // top of LNB range (default)
-      const lnb_lo = 9750; // bottom of LNB range (default)
+    function do_maths_things(f, polarity) {
+      const lnb_hi = 10600;
+      const lnb_lo = 9750;
       const hi_calc = f - lnb_hi;
       const lo_calc = f - lnb_lo;
-      const freq_band_hi = 2000; // top of band (default)
-      const freq_band_hihi = 2200; //  verrrrry top of band
-      const freq_band_lo = 950; // bottom of band (default)
+      const freq_band_hi = 2000;
+      const freq_band_hihi = 2200;
+      const freq_band_lo = 950;
 
       let result = "";
-      let freq_result = 9999; // default value
+      let freq_result = 9999;
+      let error_severity = null;
+      let error_message = "";
 
-      console.log("hi-calc is", hi_calc);
-      console.log("low-calc is", lo_calc);
-      // Boolean values
       let use_hi = false;
       let use_lo = false;
 
       if (hi_calc >= freq_band_lo && hi_calc <= freq_band_hi) {
         use_hi = true;
         freq_result = hi_calc;
-        console.log("use hi");
       }
       if (lo_calc >= freq_band_lo && lo_calc <= freq_band_hi) {
         use_lo = true;
         freq_result = lo_calc;
-        console.log("use lo");
       }
-      if (hi_calc >= freq_band_lo && hi_calc <= freq_band_hihi) {
+
+      // Check for high-end warning
+      if (hi_calc >= freq_band_hi && hi_calc <= freq_band_hihi) {
         use_hi = true;
         freq_result = hi_calc;
-        console.log("use hi hi - show warn");
+        error_severity = "warn";
+        error_message =
+          "Frequency is at the top end of the range. Some decoders may throw a wobbly.";
       }
+
       if (!use_hi && use_lo) {
         result = "Lo";
       } else if (use_hi && !use_lo) {
         result = "Hi";
       } else if (!use_hi && !use_lo) {
         result = "Out of Range";
+        error_severity = "error";
+        error_message = "Out of range - number make dish upset.";
       } else if (use_hi && use_lo) {
         result = "Overlap, both in range";
-      } else {
-        console.warn(
-          "Error in calculation; unknown state of use_hi and use_lo"
-        );
-        result = "error";
       }
 
-      return { result_txt: "no" };
+      // Add polarity prefix
+      if (result === "Hi" || result === "Lo") result = polarity + result;
+
       return {
-        result_txt: "lmao",
-        result_freq: 123,
-        error_severity: "warn",
-        error_message: "dish stuck in panini press",
+        result_txt: result,
+        result_freq: freq_result,
+        error_severity: error_severity,
+        error_message: error_message,
       };
     }
 
     function update_thingies() {
-      const f = Number($("#frequency").value); // frequency input
+      const f = Number($("#frequency").value);
       const polarity = $('input[name="polarity"]:checked').value;
       const res = do_maths_things(f, polarity);
 
       $("#result-box").value = res.result_txt;
-      $("freq-res").value = res.result_freq;
+      $("#freq-res").value = res.result_freq;
+
+      // Clear previous styling
+      $("#freq-warn").setAttribute("style", "display:none");
+      $("#freq-res").classList.remove("govuk-input--error", "orange-border");
+      $("#freq-warn").classList.remove("orange-text");
+      $("#freq-out").classList.remove(
+        "govuk-form-group--error",
+        "orange-border"
+      );
+
+      if (f < 9999) return;
 
       if (res.error_severity) {
         $("#freq-warn").textContent = res.error_message;
-        $("#freq-out").classList.add(
-          "govuk-form-group--error",
-          "orange-border"
-        );
         $("#freq-warn").setAttribute("style", "display:block");
-        switch (res.error_severity) {
-          case "warn":
-            $("#freq-warn").classList.add("style", "orange-text");
-            $("#freq-res").classList.add("govuk-input--error", "orange-border");
-            break;
+        $("#freq-out").classList.add("govuk-form-group--error");
+
+        if (res.error_severity === "warn") {
+          $("#freq-warn").classList.add("orange-text");
+          $("#freq-res").classList.add("orange-border");
+          $("#freq-out").classList.add("orange-border");
+        } else if (res.error_severity === "error") {
+          $("#freq-res").classList.add("govuk-input--error");
         }
-      } else {
-        $("#freq-warn").setAttribute("style", "display:none");
-        document
-          .querySelectorAll("#freq-out #freq-res")
-          .forEach((e) =>
-            e.classList.remove(
-              "govuk-form-group--error",
-              "govuk-input--error",
-              "orange-border"
-            )
-          );
       }
     }
-    function lnb_calc_freq() {
-      let f = Number(document.getElementById("frequency").value); // frequency input
-      const lnb_hi = 10600; // top of LNB range (default)
-      const lnb_lo = 9750; // bottom of LNB range (default)
-      let hi_calc = f - lnb_hi;
-      let lo_calc = f - lnb_lo;
-      const freq_band_hi = 2000; // top of band (default)
-      const freq_band_hihi = 2200; //  verrrrry top of band
-      const freq_band_lo = 950; // bottom of band (default)
-      let result = "";
-      let freq_result = 9999; // default value
 
-      console.log("hi-calc is", hi_calc);
-      console.log("low-calc is", lo_calc);
-      // Boolean values
-      let use_hi = false;
-      let use_lo = false;
-
-      // Getting radio button values
-      let polarity = document.querySelector('input[name="polarity"]:checked');
-
-      if (hi_calc >= freq_band_lo && hi_calc <= freq_band_hi) {
-        use_hi = true;
-        freq_result = hi_calc;
-        console.log("use hi");
-      }
-      if (lo_calc >= freq_band_lo && lo_calc <= freq_band_hi) {
-        use_lo = true;
-        freq_result = lo_calc;
-        console.log("use lo");
-      }
-      if (hi_calc >= freq_band_lo && hi_calc <= freq_band_hihi) {
-        use_hi = true;
-        freq_result = hi_calc;
-        console.log("use hi hi - show warn");
-        document
-          .querySelector("#freq-out")
-          .classList.add("govuk-form-group--error", "orange-border");
-        document
-          .querySelector("#freq-warn")
-          .setAttribute("style", "display:block");
-        document.querySelector("#freq-warn").textContent =
-          "Frequency is at the top end of the range. Some decoders may throw a wobbly.";
-        document
-          .querySelector("#freq-warn")
-          .classList.add("style", "orange-text");
-        document
-          .querySelector("#freq-res")
-          .classList.add("govuk-input--error", "orange-border");
-      }
-
-      if (!use_hi && use_lo) {
-        result = "Lo";
-      } else if (use_hi && !use_lo) {
-        result = "Hi";
-      } else if (!use_hi && !use_lo) {
-        result = "Out of Range";
-        document
-          .querySelector("#freq-out")
-          .classList.add("govuk-form-group--error");
-        document
-          .querySelector("#freq-warn")
-          .setAttribute("style", "display:block");
-        document.querySelector("#freq-warn").textContent =
-          "Out of range - number make dish upset.";
-        document
-          .querySelector("#freq-res")
-          .classList.add("govuk-input--error", "orange-border");
-      } else if (use_hi && use_lo) {
-        result = "Overlap, both in range";
-      } else {
-        console.warn(
-          "Error in calculation; unknown state of use_hi and use_lo"
-        );
-        result = "error";
-      }
-
-      // Displaying the result with polarity
-      if (polarity && (result === "Hi" || result === "Lo")) {
-        result = polarity.value + result;
-      }
-
-      document.getElementById("result-box").value = result;
-      document.getElementById("freq-res").value = freq_result;
-    }
+    $("#frequency").addEventListener("change", update_thingies);
+    $("#h").addEventListener("change", update_thingies);
+    $("#v").addEventListener("change", update_thingies);
 
     function clr() {
       // Clear the frequency input field
@@ -353,11 +272,13 @@
       }
     }
 
+    /*
     addEventListener("keypress", function (event) {
+      debugger;
       if (event.key === "Enter") {
         document.getElementById("btn-go").click();
       }
-    });
+    });*/
   </script>
 
   {% endblock %}
