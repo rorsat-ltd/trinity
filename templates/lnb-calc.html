@@ -21,6 +21,12 @@
         <span title="Low-Noise Block downconverter">LNB</span> Band Calculator
       </h1>
 
+      <p class="govuk-body">
+        This tool works out what LNB you should use to downlink your sat
+        feeds.<br />
+        It currently only supports K<sub>u</sub> band downconverted to L band.
+      </p>
+
       <!-- input boxes - Frequency -->
 
       <div class="govuk-form-group">
@@ -116,14 +122,26 @@
           <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
         </div>
       </div>
+
+      <button
+        id="btn-clear"
+        type="submit"
+        class="govuk-button govuk-button--secondary"
+        data-module="govuk-button"
+        onclick="clr()"
+      >
+        Clear
+      </button>
     </main>
   </div>
 
   <script>
     function $(selector) {
-      return document.querySelector(selector);
+      return document.querySelector(selector); // query selector macro
     }
+
     function do_maths_things(f, polarity) {
+      // maths as a function
       const lnb_hi = 10600;
       const lnb_lo = 9750;
       const hi_calc = f - lnb_hi;
@@ -173,6 +191,12 @@
       // Add polarity prefix
       if (result === "Hi" || result === "Lo") result = polarity + result;
 
+      // round to 2 dp
+      freq_result = freq_result.toFixed(2);
+
+      // remove .00
+      freq_result = freq_result.replace(".00", "");
+
       return {
         result_txt: result,
         result_freq: freq_result,
@@ -182,6 +206,7 @@
     }
 
     function update_thingies() {
+      // function to update everything, inc styling
       const f = Number($("#frequency").value);
       const polarity = $('input[name="polarity"]:checked').value;
       const res = do_maths_things(f, polarity);
@@ -197,12 +222,13 @@
       $("#result-box").value = "";
       $("#freq-res").value = "";
 
-      if (f < 9999) return;
+      if (f < 9999) return; // if it's less than 4 numbers do nothing
 
-      $("#result-box").value = res.result_txt;
+      $("#result-box").value = res.result_txt; // put the stuff in the boxes
       $("#freq-res").value = res.result_freq;
 
       if (res.error_severity) {
+        // red or orange
         $("#freq-warn").textContent = res.error_message;
         $("#freq-warn").setAttribute("style", "display:block");
         $("#freq-out").classList.add("govuk-form-group--error");
@@ -217,6 +243,7 @@
       }
     }
 
+    // anytime anything is pressed, update the page
     $("#frequency").addEventListener("change", update_thingies);
     $("#frequency").addEventListener("input", update_thingies);
     $("#h").addEventListener("change", update_thingies);
@@ -232,7 +259,7 @@
       // Clear the frequency result
       document.getElementById("freq-res").value = "";
 
-      // clear red error styles
+      // clear error styles
       document
         .querySelector("#freq-out")
         .classList.remove("govuk-form-group--error", "orange-border");
@@ -252,13 +279,12 @@
       }
     }
 
-    /*
+    // esc to clear
     addEventListener("keypress", function (event) {
-      debugger;
-      if (event.key === "Enter") {
-        document.getElementById("btn-go").click();
+      if (event.key === "Escape") {
+        document.getElementById("btn-clear").click();
       }
-    });*/
+    });
   </script>
 
   {% endblock %}
