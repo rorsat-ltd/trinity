@@ -102,24 +102,45 @@
           />
         </div>
       </div>
-      <!-- Result: Frequency -->
 
-      <div class="govuk-form-group" id="freq-out">
-        <label class="govuk-label" for="freq-res"> Post-LNB Frequency</label>
-        <p id="freq-warn" class="govuk-error-message" style="display: none">
-          error text goes here
-        </p>
-        <div class="govuk-input__wrapper">
-          <input
-            type="text"
-            id="freq-res"
-            class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
-            spellcheck="false"
-            inputmode="numeric"
-            readonly="true"
-            disabled="true"
-          />
-          <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
+      <!-- Result: Frequency + LNB Lo side by side -->
+      <div class="govuk-grid-row">
+        <div class="govuk-form-group govuk-grid-column-one-half" id="freq-out">
+          <label class="govuk-label" for="freq-res">Post-LNB Frequency</label>
+          <p id="freq-warn" class="govuk-error-message" style="display: none">
+            error text goes here
+          </p>
+          <div class="govuk-input__wrapper">
+            <input
+              type="text"
+              id="freq-res"
+              class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
+              spellcheck="false"
+              inputmode="numeric"
+              readonly="true"
+              disabled="true"
+            />
+            <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
+          </div>
+        </div>
+
+        <div
+          class="govuk-form-group govuk-grid-column-one-half"
+          id="freq-lnb-lo"
+        >
+          <label class="govuk-label" for="lnb-lo">LNB Lo Frequency</label>
+          <div class="govuk-input__wrapper">
+            <input
+              type="text"
+              id="lnb-lo"
+              class="govuk-input govuk-input--width-10 govuk-input--extra-letter-spacing govuk-!-font-weight-bold"
+              spellcheck="false"
+              inputmode="numeric"
+              readonly="true"
+              disabled="true"
+            />
+            <div class="govuk-input__suffix" aria-hidden="true">MHz</div>
+          </div>
         </div>
       </div>
 
@@ -197,9 +218,15 @@
       // remove .00
       freq_result = freq_result.replace(".00", "");
 
+      // pick the LO value used
+      let lnb_value = "";
+      if (result.includes("Hi")) lnb_value = lnb_hi;
+      else if (result.includes("Lo")) lnb_value = lnb_lo;
+
       return {
         result_txt: result,
         result_freq: freq_result,
+        lnb_value: lnb_value,
         error_severity: error_severity,
         error_message: error_message,
       };
@@ -221,11 +248,13 @@
       );
       $("#result-box").value = "";
       $("#freq-res").value = "";
+      $("#lnb-lo").value = "";
 
       if (f < 9999) return; // if it's less than 4 numbers do nothing
 
       $("#result-box").value = res.result_txt; // put the stuff in the boxes
       $("#freq-res").value = res.result_freq;
+      $("#lnb-lo").value = res.lnb_value;
 
       if (res.error_severity) {
         // red or orange
@@ -258,6 +287,9 @@
 
       // Clear the frequency result
       document.getElementById("freq-res").value = "";
+
+      // Clear the LO field
+      document.getElementById("lnb-lo").value = "";
 
       // clear error styles
       document
